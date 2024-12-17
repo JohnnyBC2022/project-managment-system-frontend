@@ -10,6 +10,7 @@ import {
 import { tags } from "@/constants";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import ProjectCard from "../Project/ProjectCard";
 
 const ProjectList = () => {
   const [keyword, setKeyword] = useState("")
@@ -108,9 +109,9 @@ const ProjectList = () => {
           <div>
             <div className="space-y-5 min-h-[74vh]">
               {keyword
-                ? [1, 1, 1].map((item) => <div key={item}>project card</div>)
+                ? [1, 1, 1].map((item) => <ProjectCard key={item}/>)
                 : [1, 1, 1, 1].map((item) => (
-                    <div key={item}>project card</div>
+                  <ProjectCard key={item}/>
                   ))}
             </div>
           </div>
