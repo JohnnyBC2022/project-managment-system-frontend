@@ -17,7 +17,7 @@ const ProjectCard = () => {
           <div className="flex justify-between">
             <div className="flex items-center gap-5">
               <h1 className="cursor-pointer font-bold text-lg">
-                Crear Ecommerce Project
+                Crear un proyecto de Ecommerce
               </h1>
               <DotFilledIcon />
               <p className="text-sm text-gray-400">fullstack</p>

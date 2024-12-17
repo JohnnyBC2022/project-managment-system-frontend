@@ -1,12 +1,13 @@
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/Home";
+import Navbar from "./pages/NavBar/Navbar";
 
 function App() {
-
   return (
     <>
-      <Home/>
+      <Navbar />
+      <Home />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
