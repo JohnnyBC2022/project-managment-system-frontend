@@ -3,18 +3,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MagnifyingGlassIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
+import {
+  MagnifyingGlassIcon,
+  MixerHorizontalIcon,
+} from "@radix-ui/react-icons";
 import { tags } from "@/constants";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 const ProjectList = () => {
+  const [keyword, setKeyword] = useState("")
+
+
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
   };
 
-  const handleSearchChange = () =>{
-    console.log('buscando...')
-  }
+  const handleSearchChange = (e) => {
+    setKeyword(e.target.value)
+  };
 
   return (
     <>
@@ -34,7 +41,7 @@ const ProjectList = () => {
                   <h1 className="pb-3 text-gray-400 border-b">Categoría</h1>
                   <div className="pt-5">
                     <RadioGroup
-                    className="space-y-3 pt-5"
+                      className="space-y-3 pt-5"
                       defaultValue="all"
                       onValueChange={(value) => {
                         handleFilterChange("category", value);
@@ -64,14 +71,17 @@ const ProjectList = () => {
                   <h1 className="pb-3 text-gray-400 border-b">Etiqueta</h1>
                   <div className="pt-5">
                     <RadioGroup
-                    className="space-y-3 pt-5"
+                      className="space-y-3 pt-5"
                       defaultValue="Todas"
                       onValueChange={(value) => {
                         handleFilterChange("tag", value);
                       }}
                     >
                       {tags.map((item) => (
-                        <div key={item} className="flex items-center gap-3 spacec-y-7">
+                        <div
+                          key={item}
+                          className="flex items-center gap-3 spacec-y-7"
+                        >
                           <RadioGroupItem value={item} id={`r-${item}`} />
                           <Label htmlFor={`r-${item}`}>{item}</Label>
                         </div>
@@ -85,14 +95,24 @@ const ProjectList = () => {
         </section>
         <section className="projectListSection w-full lg:w-[48rem]">
           <div className="flex gap-2 items-center pb-5 justify-between">
-                      <div className="relative p-0 w-full">
-                        <Input
-                          className="40% rounded-full px-10"
-                          placeholder="Buscar proyecto..."
-                          onChange={handleSearchChange}
-                        />
-                        <MagnifyingGlassIcon className="absolute top-3 left-4"/>
-                      </div>
+            <div className="relative p-0 w-full">
+              <Input
+                className="40% rounded-full px-10"
+                placeholder="Buscar proyecto..."
+                onChange={handleSearchChange}
+              />
+              <MagnifyingGlassIcon className="absolute top-3 left-4" />
+            </div>
+          </div>
+
+          <div>
+            <div className="space-y-5 min-h-[74vh]">
+              {keyword
+                ? [1, 1, 1].map((item) => <div key={item}>project card</div>)
+                : [1, 1, 1, 1].map((item) => (
+                    <div key={item}>project card</div>
+                  ))}
+            </div>
           </div>
         </section>
       </div>
