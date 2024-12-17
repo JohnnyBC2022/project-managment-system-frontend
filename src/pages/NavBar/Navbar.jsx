@@ -5,6 +5,9 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import CreateProjectForm from "../Project/CreateProjectForm";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { PersonIcon } from "@radix-ui/react-icons";
 
 const Navbar = () => {
   return (
@@ -18,8 +21,26 @@ const Navbar = () => {
 
           <DialogContent>
             <DialogHeader>Crear Nuevo Proyecto</DialogHeader>
+            <CreateProjectForm/>
           </DialogContent>
         </Dialog>
+        <Button variant="ghost">
+            Suscripción
+        </Button>
+      </div>
+
+      <div className="flex gap-3 items-center">
+        <DropdownMenu>
+            <DropdownMenuTrigger>
+                <Button size="icon" variant="outline" className="rounded-full border-2 border-green-500">
+                    <PersonIcon/>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+                <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+        <p>Jonathan</p>
       </div>
     </div>
   );
