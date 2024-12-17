@@ -3,13 +3,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MixerHorizontalIcon } from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { tags } from "@/constants";
+import { Input } from "@/components/ui/input";
 
 const ProjectList = () => {
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
   };
+
+  const handleSearchChange = () =>{
+    console.log('buscando...')
+  }
 
   return (
     <>
@@ -78,7 +83,18 @@ const ProjectList = () => {
             </CardContent>
           </Card>
         </section>
-        <section className="projectListSection w-full lg:w-[48rem]"></section>
+        <section className="projectListSection w-full lg:w-[48rem]">
+          <div className="flex gap-2 items-center pb-5 justify-between">
+                      <div className="relative p-0 w-full">
+                        <Input
+                          className="40% rounded-full px-10"
+                          placeholder="Buscar proyecto..."
+                          onChange={handleSearchChange}
+                        />
+                        <MagnifyingGlassIcon className="absolute top-3 left-4"/>
+                      </div>
+          </div>
+        </section>
       </div>
     </>
   );
