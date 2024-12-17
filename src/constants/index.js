@@ -1,13 +1,13 @@
 export const tags = [
   "Todas",
-  "React",
-  "Nextjs",
-  "Spring boot",
-  "Mysql",
-  "Mongodb",
   "Angular",
+  "Django",
+  "Flask",
+  "Mongodb",
+  "Mysql",
+  "Nextjs",
   "Postgresql",
   "Python",
-  "Flask",
-  "Django",
+  "React",
+  "Spring boot"
 ];
