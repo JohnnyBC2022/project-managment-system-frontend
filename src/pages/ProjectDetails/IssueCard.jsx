@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons"
+import UserList from "./UserList"
 
 
 const IssueCard = () => {
@@ -43,6 +44,9 @@ const IssueCard = () => {
                             </Avatar>
                         </Button>
                     </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <UserList/>
+                    </DropdownMenuContent>
                 </DropdownMenu>
             </div>
         </CardContent>
