@@ -5,6 +5,8 @@ import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PlusIcon } from "@radix-ui/react-icons";
 import InviteUserForm from "./InviteUserForm";
+import IssueList from "./IssueList";
+import ChatBox from "./ChatBox";
 
 const ProjectDetails = () => {
 
@@ -73,11 +75,18 @@ const ProjectDetails = () => {
               <section>
                 <p className="py-5 border-b text-lg -tracking-wider">Tareas</p>
                 <div className="lg:flex md:flex gap-3 justify-between py-5">
+
+                    <IssueList status="pending" title="Pendiente"/>
+                    <IssueList status="in_progress" title="En Progreso"/>
+                    <IssueList status="done" title="Terminado"/>
                     
                 </div>
               </section>
             </div>
           </ScrollArea>
+          <div>
+            <ChatBox/>
+          </div>
         </div>
       </div>
     </>
