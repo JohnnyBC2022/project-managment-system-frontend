@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PlusIcon } from "@radix-ui/react-icons";
+import InviteUserForm from "./InviteUserForm";
 
 const ProjectDetails = () => {
 
@@ -20,8 +21,8 @@ const ProjectDetails = () => {
               <h1 className="text-lg font-semibold pb-5">
                 Crear un proyecto de Ecommerce
               </h1>
-              <div className="space-y-5 pb-10">
-                <p className="w-full md:max-w-lg lg:max-w-xl">
+              <div className="space-y-5 pb-10 text-sm">
+                <p className="w-full md:max-w-lg lg:max-w-xl ">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo
                   harum laudantium nemo ducimus quibusdam culpa dignissimos!
                 </p>
@@ -51,9 +52,9 @@ const ProjectDetails = () => {
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                            Añadir Miembro
-                            <InviteUserForm />
+                            Invitar al Equipo
                         </DialogHeader>
+                            <InviteUserForm/>
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -68,6 +69,13 @@ const ProjectDetails = () => {
                   <Badge>En progreso</Badge>
                 </div>
               </div>
+
+              <section>
+                <p className="py-5 border-b text-lg -tracking-wider">Tareas</p>
+                <div className="lg:flex md:flex gap-3 justify-between py-5">
+                    
+                </div>
+              </section>
             </div>
           </ScrollArea>
         </div>
