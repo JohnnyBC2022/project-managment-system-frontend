@@ -1,6 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useParams } from "react-router-dom";
+import CreateCommentForm from "./CreateCommentForm";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
@@ -36,7 +37,7 @@ const IssueDetails = () => {
                         </TabsContent>
 
                         <TabsContent value="comments">
-                            {/* <CreateCommentForm  issueId={issueId}/> */}
+                            {<CreateCommentForm  issueId={issueId}/>}
                         </TabsContent>
 
                         <TabsContent value="history">
