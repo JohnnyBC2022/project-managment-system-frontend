@@ -41,7 +41,7 @@ const IssueList = ({ title, status }) => {
         </Card>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Crear nueva tarea</DialogTitle>
+            <DialogTitle>Crear Nueva Tarea</DialogTitle>
           </DialogHeader>
           <CreateIssueForm />
         </DialogContent>

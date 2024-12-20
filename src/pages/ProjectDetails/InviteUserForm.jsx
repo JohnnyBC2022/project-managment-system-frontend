@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
@@ -15,8 +21,9 @@ const InviteUserForm = () => {
   const onSubmit = (data) => {
     console.log("crear datos del proyecto:", data);
   };
-  return <div>
-  <Form {...form}>
+  return (
+    <div>
+      <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <FormField
             control={form.control}
@@ -36,20 +43,15 @@ const InviteUserForm = () => {
             )}
           />
 
-
           <DialogClose>
-            
-              <Button
-                type="submit"
-                className="w-full  text-white uppercase mt-5"
-              >
-                Invitar Usuario
-              </Button>
-           
+            <Button type="submit" className="w-full  text-white uppercase mt-5">
+              Invitar Usuario
+            </Button>
           </DialogClose>
         </form>
       </Form>
-  </div>;
+    </div>
+  );
 };
 
 export default InviteUserForm;
