@@ -2,6 +2,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useParams } from "react-router-dom";
 import CreateCommentForm from "./CreateCommentForm";
+import CommentCard from "./CommentCard";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
@@ -38,6 +39,9 @@ const IssueDetails = () => {
 
                         <TabsContent value="comments">
                             {<CreateCommentForm  issueId={issueId}/>}
+                            <div className="mt-8 space-y-5">
+                                {[1,1,1].map((item)=><CommentCard key={item}/>)}
+                            </div>
                         </TabsContent>
 
                         <TabsContent value="history">
