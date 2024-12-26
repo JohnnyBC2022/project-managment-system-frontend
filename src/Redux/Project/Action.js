@@ -15,8 +15,7 @@ import {
   SEARCH_PROJECTS_SUCCESS,
 } from "./ActionTypes";
 
-export const fetchProjects =
-  ({ category, tag }) =>
+export const fetchProjects = ({ category, tag }) =>
   async (dispatch) => {
     dispatch({ type: FETCH_PROJECTS_BY_ID_REQUEST });
     try {
@@ -63,8 +62,7 @@ export const fetchProjectById = (id) => async (dispatch) => {
   }
 };
 
-export const deleteProject =
-  ({ projectId }) =>
+export const deleteProject = ({ projectId }) =>
   async (dispatch) => {
     dispatch({ type: DELETE_PROJECT_REQUEST });
     try {
@@ -76,8 +74,7 @@ export const deleteProject =
     }
 };
 
-export const inviteToProject =
-  ({ email, projectId }) =>
+export const inviteToProject = ({ email, projectId }) =>
   async (dispatch) => {
     dispatch({ type: INVITE_TO_PROJECT_REQUEST });
     try {
@@ -92,8 +89,7 @@ export const inviteToProject =
     }
 };
 
-export const acceptInvitation =
-  ({ invitationToken, navigate }) =>
+export const acceptInvitation = ({ invitationToken, navigate }) =>
   async (dispatch) => {
     dispatch({ type: ACCEPT_INVITATION_REQUEST });
     try {
