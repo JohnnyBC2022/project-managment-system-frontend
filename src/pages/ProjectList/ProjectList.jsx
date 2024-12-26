@@ -13,15 +13,14 @@ import { useState } from "react";
 import ProjectCard from "../Project/ProjectCard";
 
 const ProjectList = () => {
-  const [keyword, setKeyword] = useState("")
-
+  const [keyword, setKeyword] = useState("");
 
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
   };
 
   const handleSearchChange = (e) => {
-    setKeyword(e.target.value)
+    setKeyword(e.target.value);
   };
 
   return (
@@ -109,10 +108,8 @@ const ProjectList = () => {
           <div>
             <div className="space-y-5 min-h-[74vh]">
               {keyword
-                ? [1, 1, 1].map((item) => <ProjectCard key={item}/>)
-                : [1, 1, 1, 1].map((item) => (
-                  <ProjectCard key={item}/>
-                  ))}
+                ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
+                : [1, 1, 1, 1].map((item) => <ProjectCard key={item} />)}
             </div>
           </div>
         </section>

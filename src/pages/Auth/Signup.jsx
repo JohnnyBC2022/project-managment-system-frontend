@@ -84,8 +84,7 @@ const Signup = () => {
           <Button type="submit" className="w-full  text-white uppercase mt-5">
             Registrarse
           </Button>
-          <p
-          className="mt-5">¿Ya tienes tu cuenta?</p>
+          <p className="mt-5">¿Ya tienes tu cuenta?</p>
         </form>
       </Form>
     </div>

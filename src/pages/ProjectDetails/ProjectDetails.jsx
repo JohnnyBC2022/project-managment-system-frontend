@@ -1,7 +1,13 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PlusIcon } from "@radix-ui/react-icons";
 import InviteUserForm from "./InviteUserForm";
@@ -9,10 +15,7 @@ import IssueList from "./IssueList";
 import ChatBox from "./ChatBox";
 
 const ProjectDetails = () => {
-
-    const handleProjectInvitation=()=>{
-
-    }
+  const handleProjectInvitation = () => {};
 
   return (
     <>
@@ -46,17 +49,19 @@ const ProjectDetails = () => {
                   <Dialog>
                     <DialogTrigger>
                       <DialogClose>
-                        <Button className="ml-2" size="sm" onClick={handleProjectInvitation}>
+                        <Button
+                          className="ml-2"
+                          size="sm"
+                          onClick={handleProjectInvitation}
+                        >
                           <span>Invitar</span>
                           <PlusIcon className="w-3 h-3" />
                         </Button>
                       </DialogClose>
                     </DialogTrigger>
                     <DialogContent>
-                        <DialogHeader>
-                            Invitar al Equipo
-                        </DialogHeader>
-                            <InviteUserForm/>
+                      <DialogHeader>Invitar al Equipo</DialogHeader>
+                      <InviteUserForm />
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -75,17 +80,15 @@ const ProjectDetails = () => {
               <section>
                 <p className="py-5 border-b text-lg -tracking-wider">Tareas</p>
                 <div className="lg:flex md:flex gap-3 justify-between py-5">
-
-                    <IssueList status="pending" title="Pendiente"/>
-                    <IssueList status="in_progress" title="En Progreso"/>
-                    <IssueList status="done" title="Terminado"/>
-                    
+                  <IssueList status="pending" title="Pendiente" />
+                  <IssueList status="in_progress" title="En Progreso" />
+                  <IssueList status="done" title="Terminado" />
                 </div>
               </section>
             </div>
           </ScrollArea>
           <div className="lg:w-[30%] rounded-md sticky right-5 top-10">
-            <ChatBox/>
+            <ChatBox />
           </div>
         </div>
       </div>

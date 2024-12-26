@@ -97,9 +97,7 @@ const IssueDetails = () => {
 
                 <div className="flex gap-10 items-center">
                   <p className="w-[7rem]">Estado</p>
-                  <Badge>
-                    En Progreso
-                  </Badge>
+                  <Badge>En Progreso</Badge>
                 </div>
 
                 <div className="flex gap-10 items-center">
@@ -116,7 +114,6 @@ const IssueDetails = () => {
                     <p>Jonathan Baragaño</p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

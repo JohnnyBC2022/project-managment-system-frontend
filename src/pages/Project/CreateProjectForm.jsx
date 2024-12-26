@@ -20,15 +20,15 @@ import { Cross1Icon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 
 const CreateProjectForm = () => {
+  const handleTagsChange = (newValue) => {
+    const currentTags = form.getValues("tags");
 
-    const handleTagsChange=(newValue)=>{
-        const currentTags = form.getValues("tags");
+    const updatedTags = currentTags.includes(newValue)
+      ? currentTags.filter((tag) => tag !== newValue)
+      : [...currentTags, newValue];
 
-        const updatedTags= currentTags.includes(newValue)?
-        currentTags.filter(tag=>tag !==newValue):[...currentTags, newValue];
-
-        form.setValue("tags", updatedTags)
-    }
+    form.setValue("tags", updatedTags);
+  };
 
   const form = useForm({
     //resolver:zod
@@ -114,9 +114,11 @@ const CreateProjectForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Select onValueChange={(value) => {
-                    handleTagsChange(value)
-                  }}>
+                  <Select
+                    onValueChange={(value) => {
+                      handleTagsChange(value);
+                    }}
+                  >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Etiquetas" />
                     </SelectTrigger>
@@ -130,11 +132,16 @@ const CreateProjectForm = () => {
                   </Select>
                 </FormControl>
                 <div className="flex gap-1 flex-wrap">
-                    {field.value.map((item)=> <div key={item}  onClick={()=>handleTagsChange(item)}className="cursor-pointer flex items-center border gap-2 py-1 px-4 rounded-full">
-                        <span className="text-sm">{item}</span>
-                        <Cross1Icon className="h-3 w-3"/>
-                    </div>)}
-
+                  {field.value.map((item) => (
+                    <div
+                      key={item}
+                      onClick={() => handleTagsChange(item)}
+                      className="cursor-pointer flex items-center border gap-2 py-1 px-4 rounded-full"
+                    >
+                      <span className="text-sm">{item}</span>
+                      <Cross1Icon className="h-3 w-3" />
+                    </div>
+                  ))}
                 </div>
                 <FormMessage />
               </FormItem>

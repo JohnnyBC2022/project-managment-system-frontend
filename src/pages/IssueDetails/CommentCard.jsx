@@ -15,7 +15,7 @@ const CommentCard = () => {
         </div>
       </div>
       <Button className="rounded-full" size="icon">
-        <TrashIcon/>
+        <TrashIcon />
       </Button>
     </div>
   );

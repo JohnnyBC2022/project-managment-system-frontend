@@ -1,12 +1,11 @@
-import ProjectList from "../ProjectList/ProjectList"
-
+import ProjectList from "../ProjectList/ProjectList";
 
 const Home = () => {
   return (
     <div>
-        <ProjectList/>
+      <ProjectList />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

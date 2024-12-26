@@ -26,7 +26,6 @@ const Login = () => {
       <h1 className="text-xl">Iniciar Sesión</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-
           <FormField
             control={form.control}
             name="email"
@@ -66,8 +65,7 @@ const Login = () => {
           <Button type="submit" className="w-full  text-white uppercase mt-5">
             Iniciar Sesión
           </Button>
-          <p
-          className="mt-5">¿Todavía no tienes tu cuenta?</p>
+          <p className="mt-5">¿Todavía no tienes tu cuenta?</p>
         </form>
       </Form>
     </div>

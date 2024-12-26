@@ -9,7 +9,7 @@ export const tags = [
   "Postgresql",
   "Python",
   "React",
-  "Spring boot"
+  "Spring boot",
 ];
 
 export const freePlan = [
@@ -19,7 +19,7 @@ export const freePlan = [
   "Informes básicos",
   "Notificaciones por Email",
   "Control de Acceso Básico",
-]
+];
 
 export const paidPlan = [
   "Añade proyectos ilimitados",
@@ -31,8 +31,8 @@ export const paidPlan = [
   "Soporte integrado",
   "Seguridad avanzada",
   "flujos de trabajo personalizados",
-  "Control de acceso"
-]
+  "Control de acceso",
+];
 
 export const annualPlan = [
   "Añade proyectos ilimitados",
@@ -42,4 +42,4 @@ export const annualPlan = [
   "Soporte personalizado",
   "formación y recursos",
   "Todo lo que incluye el plan mensual",
-]
+];
