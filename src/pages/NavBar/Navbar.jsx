@@ -32,7 +32,7 @@ const Navbar = () => {
             <CreateProjectForm/>
           </DialogContent>
         </Dialog>
-        <Button variant="ghost">
+        <Button onClick={()=>navigate("/upgrade-plan")} variant="ghost">
             Suscripción
         </Button>
       </div>
