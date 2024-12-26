@@ -1,7 +1,5 @@
 import { GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionTypes";
 
-const { error } = require("console");
-
 const initialState={
     user:null,
     loading:false,
