@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "sans-serif";
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #09090b;
+}
+
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.box {
+  position: relative;
+  background: #25252b;
+  filter: drop-shadow(0 15px 50px #000);
+  animation: rotating 10s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+@keyframes rotating {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
+  }
+}
+
+.box::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(
+    from var(--a),
+    transparent 0%,
+    transparent 10%,
+    #22c55e 15%,
+    #22c55e 20%,
+    transparent 20%,
+    transparent 35%,
+    #ffb500 40%,
+    #ffb500 45%,
+    transparent 45%,
+    transparent 1%
+  );
+    filter: drop-shadow(0 15px 50px #000);
+    border-radius: 20px;
+    animation: rotating 10s linear infinite;
+    animation-delay: -1s;
+    
+}
+
+.box::after{
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background-color: #1c1917;
+    border-radius: 15px;
+    border: 5px solid #25252b;
+}
+
+.login{
+    position: absolute;
+    inset: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: rgb(0,0,0,0.2);
+    z-index: 1000;
+    box-shadow: inset 0 10px 20px rgb(0,0,0,0.5);
+    border-bottom: 2px solid rgb(255,255,255,0.5);
+}
