@@ -1,5 +1,7 @@
 import api from "@/config/api";
 import {
+    ACCEPT_INVITATION_REQUEST,
+  ACCEPT_INVITATION_SUCCESS,
   CREATE_PROJECT_REQUEST,
   CREATE_PROJECT_SUCCESS,
   DELETE_PROJECT_REQUEST,
@@ -7,6 +9,8 @@ import {
   FETCH_PROJECTS_BY_ID_REQUEST,
   FETCH_PROJECTS_BY_ID_SUCCESS,
   FETCH_PROJECTS_SUCCESS,
+  INVITE_TO_PROJECT_REQUEST,
+  INVITE_TO_PROJECT_SUCCESS,
   SEARCH_PROJECT_REQUEST,
   SEARCH_PROJECT_SUCCESS,
 } from "./ActionTypes";
@@ -51,7 +55,7 @@ export const createProject = (projectData) => async (dispatch) => {
 export const fetchProjectById = (id) => async (dispatch) => {
   dispatch({ type: FETCH_PROJECTS_BY_ID_REQUEST });
   try {
-    const { data } = await api.get("/api/projects" + id); // no sé si faltará /al final de la url
+    const { data } = await api.get("/api/projects" + id);
     console.log("Leyendo el proyecto con id", data);
     dispatch({ type: FETCH_PROJECTS_BY_ID_SUCCESS, project: data });
   } catch (error) {
@@ -70,4 +74,38 @@ export const deleteProject =
     } catch (error) {
       console.log("error", error);
     }
-  };
+};
+
+export const inviteToProject =
+  ({ email, projectId }) =>
+  async (dispatch) => {
+    dispatch({ type: INVITE_TO_PROJECT_REQUEST });
+    try {
+      const { data } = await api.post("/api/projects/invite", {
+        email,
+        projectId,
+      });
+      console.log("Invitando al proyecto con id", data);
+      dispatch({ type: INVITE_TO_PROJECT_SUCCESS, payload: data });
+    } catch (error) {
+      console.log("error", error);
+    }
+};
+
+export const acceptInvitation =
+  ({ invitationToken, navigate }) =>
+  async (dispatch) => {
+    dispatch({ type: ACCEPT_INVITATION_REQUEST });
+    try {
+      const { data } = await api.get("/api/projects/accept_invitation", {
+        params:{
+            token:invitationToken
+        }
+      });
+      navigate("/project"+data.projectId)
+      console.log("Aceptando invitación al proyecto", data);
+      dispatch({ type: ACCEPT_INVITATION_SUCCESS, payload: data });
+    } catch (error) {
+      console.log("error", error);
+    }
+};
