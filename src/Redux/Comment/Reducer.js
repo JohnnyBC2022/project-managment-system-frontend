@@ -1,4 +1,3 @@
-import { error } from "console";
 import * as actionTypes from "./ActionTypes";
 
 const initialState = {

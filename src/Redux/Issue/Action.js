@@ -81,3 +81,19 @@ export const assignedUserToIssue = ({issueId, userId}) => {
     };
 };
 
+export const deleteIssue = (issueId) =>{
+    return async (dispatch) => {
+        dispatch({type: actionTypes.DELETE_ISSUE_REQUEST})
+        try {
+            await api.delete(`/api/issues/${issueId}`)
+            dispatch({type: actionTypes.DELETE_ISSUE_SUCCESS, issueId})
+            console.log("tarea eliminada")
+        } catch (error) {
+            console.log("error -- ", error)
+            dispatch({
+                type: actionTypes.DELETE_ISSUE_FAILURE,
+                error: error.message
+            })
+        }
+    }
+}

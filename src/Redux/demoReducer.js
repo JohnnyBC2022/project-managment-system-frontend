@@ -1,3 +1,5 @@
+import * as actionTypes from "./ActionTypes";
+
 const initialState = {
     
 };
