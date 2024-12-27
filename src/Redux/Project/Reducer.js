@@ -60,6 +60,6 @@ export const projectReducer = (state = initialState, action) => {
             error:null
         }
     default:
-      state;
+      return state;
   }
 };
