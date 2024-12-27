@@ -1,4 +1,3 @@
-import { error } from "console";
 import * as actionTypes from "./ActionTypes";
 
 const initialState = {
@@ -8,7 +7,7 @@ const initialState = {
   chat: null,
 };
 
-const ChatReducer = (state = initialState, action) => {
+export const chatReducer = (state = initialState, action) => {
   switch (action.action) {
     case actionTypes.FETCH_MESSAGES_REQUEST:
     case actionTypes.SEND_MESSAGE_REQUEST:
@@ -51,4 +50,4 @@ const ChatReducer = (state = initialState, action) => {
   }
 };
 
-export default ChatReducer;
+
