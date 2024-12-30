@@ -7,11 +7,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { deleteProject } from "@/Redux/Project/Action";
 import { DotFilledIcon, DotsVerticalIcon } from "@radix-ui/react-icons";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const ProjectCard = () => {
+const ProjectCard = ({item}) => {
   const navigate = useNavigate();
+  const dispatch=useDispatch()
+  const handleDelete=()=>{
+    dispatch(deleteProject({projectId: item.id}))
+  }
 
   return (
     <Card className="p-5 w-full lg:max-w-3xl">
@@ -23,10 +29,10 @@ const ProjectCard = () => {
                 onClick={() => navigate("/project/3")}
                 className="cursor-pointer font-bold text-lg"
               >
-                Crear un proyecto de Ecommerce
+                {item.name}
               </h1>
               <DotFilledIcon />
-              <p className="text-sm text-gray-400">fullstack</p>
+              <p className="text-sm text-gray-400">{item.category}</p>
             </div>
             <div>
               <DropdownMenu>
@@ -37,22 +43,20 @@ const ProjectCard = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>Actualizar</DropdownMenuItem>
-                  <DropdownMenuItem>Eliminar</DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleDelete}>Eliminar</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </div>
           <p className="text-gray-500 text-sm">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus
-            veritatis repudiandae totam non doloribus exercitationem omnis vitae
-            odio assumenda
+            {item.description}
           </p>
         </div>
 
         <div className="flex flex-wrap gap-2 items-center">
-          {[1, 1, 1, 1].map((item) => (
+          {item.tags.map((tag) => (
             <Badge key={item} variant="outline">
-              {"frontend"}
+              {tag}
             </Badge>
           ))}
         </div>

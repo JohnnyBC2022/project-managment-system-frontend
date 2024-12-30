@@ -11,9 +11,12 @@ import { tags } from "@/constants";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import ProjectCard from "../Project/ProjectCard";
+import { useSelector } from "react-redux";
 
 const ProjectList = () => {
   const [keyword, setKeyword] = useState("");
+
+  const {project}=useSelector(store=>store)
 
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
@@ -109,7 +112,7 @@ const ProjectList = () => {
             <div className="space-y-5 min-h-[74vh]">
               {keyword
                 ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
-                : [1, 1, 1, 1].map((item) => <ProjectCard key={item} />)}
+                : project.projects?.map((item) => <ProjectCard key={item.id} item={item}/>)}
             </div>
           </div>
         </section>
