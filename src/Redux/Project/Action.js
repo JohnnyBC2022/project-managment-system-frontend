@@ -54,7 +54,7 @@ export const createProject = (projectData) => async (dispatch) => {
 export const fetchProjectById = (id) => async (dispatch) => {
   dispatch({ type: FETCH_PROJECTS_BY_ID_REQUEST });
   try {
-    const { data } = await api.get("/api/projects" + id);
+    const { data } = await api.get("/api/projects/" + id);
     console.log("Leyendo el proyecto con id", data);
     dispatch({ type: FETCH_PROJECTS_BY_ID_SUCCESS, project: data });
   } catch (error) {
