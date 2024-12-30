@@ -3,6 +3,7 @@ export const tags = [
   "Angular",
   "Django",
   "Flask",
+  "Java",
   "Mongodb",
   "Mysql",
   "Nextjs",
