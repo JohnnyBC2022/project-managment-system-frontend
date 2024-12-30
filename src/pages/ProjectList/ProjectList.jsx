@@ -11,12 +11,14 @@ import { tags } from "@/constants";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import ProjectCard from "../Project/ProjectCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { searchProjects } from "@/Redux/Project/Action";
 
 const ProjectList = () => {
   const [keyword, setKeyword] = useState("");
 
-  const {project}=useSelector(store=>store)
+  const {project}=useSelector(store=>store);
+  const dispatch=useDispatch()
 
   const handleFilterChange = (section, value) => {
     console.log("value", value, section);
@@ -24,6 +26,7 @@ const ProjectList = () => {
 
   const handleSearchChange = (e) => {
     setKeyword(e.target.value);
+    dispatch(searchProjects(e.target.value))
   };
 
   return (
@@ -111,7 +114,7 @@ const ProjectList = () => {
           <div>
             <div className="space-y-5 min-h-[74vh]">
               {keyword
-                ? [1, 1, 1].map((item) => <ProjectCard key={item} />)
+                ? project.searchProjects?.map((item,index) => <ProjectCard key={item.id*index} item={item} />)
                 : project.projects?.map((item) => <ProjectCard key={item.id} item={item}/>)}
             </div>
           </div>
