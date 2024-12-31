@@ -8,9 +8,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createIssue } from "@/Redux/Issue/Action";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const CreateIssueForm = () => {
+  const {id}=useParams();
+  const dispatch=useDispatch()
+  
   const form = useForm({
     //resolver:zod
     defaultValues: {
@@ -20,7 +26,14 @@ const CreateIssueForm = () => {
   });
 
   const onSubmit = (data) => {
-    console.log("crear datos del proyecto:", data);
+    data.projectID=id;
+console.log(data)
+    dispatch(createIssue({
+      title: data.issueName,
+      description: data.description,
+      projectID: id,
+    }))
+    console.log("crear datos de la tarea:", data);
   };
   return (
     <div>

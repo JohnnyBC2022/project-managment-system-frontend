@@ -11,7 +11,7 @@ import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons";
 import UserList from "./UserList";
 import { useNavigate } from "react-router-dom";
 
-const IssueCard = () => {
+const IssueCard = ({item, projectId}) => {
   const navigate = useNavigate();
 
   return (
@@ -20,9 +20,9 @@ const IssueCard = () => {
         <div className="flex justify-between items-center">
           <CardTitle
             className="cursor-pointer"
-            onClick={() => navigate("/project/3/issue/10")}
+            onClick={() => navigate(`/project/${projectId}/issue/${item.id}`)}
           >
-            Crear NavBar
+            {item.title}
           </CardTitle>
 
           <DropdownMenu>
