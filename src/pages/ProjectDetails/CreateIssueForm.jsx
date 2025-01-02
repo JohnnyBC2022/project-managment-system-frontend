@@ -26,12 +26,12 @@ const CreateIssueForm = () => {
   });
 
   const onSubmit = (data) => {
-    data.projectID=id;
+    data.projectId=id;
 console.log(data)
     dispatch(createIssue({
       title: data.issueName,
       description: data.description,
-      projectID: id,
+      projectId: id,
     }))
     console.log("crear datos de la tarea:", data);
   };

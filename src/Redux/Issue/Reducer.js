@@ -19,6 +19,12 @@ export const issueReducer = (state = initialState, action) => {
         loading: true,
         error: null,
       };
+    case actionTypes.CREATE_ISSUE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        issues: [...state.issues, action.issue]
+      }
     case actionTypes.FETCH_ISSUES_SUCCESS:
       console.log("state.issues", state.issues); // Verifica que las tareas estén en el estado
 

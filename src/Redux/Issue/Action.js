@@ -21,11 +21,11 @@ export const fetchIssues = (id) => {
   };
 };
 
-export const fetchIssuesById = (issueId) => {
+export const fetchIssuesById = (id) => {
   return async (dispatch) => {
     dispatch({ type: actionTypes.FETCH_ISSUES_BY_ID_REQUEST });
     try {
-      const response = await api.get(`/api/issues/${issueId}`);
+      const response = await api.get(`/api/issues/${id}`);
       console.log("obteniendo tarea por id", response.data);
       dispatch({
         type: actionTypes.FETCH_ISSUES_BY_ID_SUCCESS,
@@ -41,11 +41,11 @@ export const fetchIssuesById = (issueId) => {
   };
 };
 
-export const updateIssueStatus = ({ issueId, status }) => {
+export const updateIssueStatus = ({ id, status }) => {
   return async (dispatch) => {
     dispatch({ type: actionTypes.UPDATE_ISSUE_STATUS_REQUEST });
     try {
-      const response = await api.put(`/api/issues/${issueId}/status/${status}`);
+      const response = await api.put(`/api/issues/${id}/status/${status}`);
       console.log("actualizando estado de la tarea", response.data);
       dispatch({
         type: actionTypes.UPDATE_ISSUE_STATUS_SUCCESS,
