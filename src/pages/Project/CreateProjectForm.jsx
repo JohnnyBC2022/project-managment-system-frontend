@@ -39,7 +39,7 @@ const CreateProjectForm = () => {
     defaultValues: {
       name: "",
       description: "",
-      category: "fullStack",
+      category: "fullstack",
       tags: ["Javascript", "React"],
     },
   });

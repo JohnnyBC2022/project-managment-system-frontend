@@ -26,14 +26,17 @@ export const issueReducer = (state = initialState, action) => {
         issues: [...state.issues, action.issue]
       }
     case actionTypes.FETCH_ISSUES_SUCCESS:
-      console.log("state.issues", state.issues); // Verifica que las tareas estén en el estado
-
       return {
         ...state,
         loading: false,
         issues: action.issues,
       };
     case actionTypes.FETCH_ISSUES_BY_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        issueDetails:action.issue
+      }
     case actionTypes.UPDATE_ISSUE_STATUS_SUCCESS:
       return {
         ...state,
@@ -52,7 +55,7 @@ export const issueReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        isses: state.issues.filter((issue) => issue.id !== action.issueId),
+        issues: state.issues.filter((issue) => issue.id !== action.issueId),
       };
     case actionTypes.FETCH_ISSUES_FAILURE:
     case actionTypes.CREATE_ISSUE_FAILURE:

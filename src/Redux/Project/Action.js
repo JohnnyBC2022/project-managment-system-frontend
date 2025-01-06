@@ -98,7 +98,7 @@ export const acceptInvitation = ({ invitationToken, navigate }) =>
             token:invitationToken
         }
       });
-      navigate("/project"+data.projectId)
+      navigate("/project/"+data.projectId)
       console.log("Aceptando invitación al proyecto", data);
       dispatch({ type: ACCEPT_INVITATION_SUCCESS, payload: data });
     } catch (error) {

@@ -29,7 +29,7 @@ export const fetchIssuesById = (id) => {
       console.log("obteniendo tarea por id", response.data);
       dispatch({
         type: actionTypes.FETCH_ISSUES_BY_ID_SUCCESS,
-        issues: response.data,
+        issue: response.data,
       });
     } catch (error) {
       console.log("error --", error);
@@ -87,7 +87,6 @@ export const createIssue = (issueData) => {
   return async (dispatch) => {
     dispatch({ type: actionTypes.CREATE_ISSUE_REQUEST });
     try {
-      console.log("Datos enviados a la API:", issueData);
       const response = await api.post("/api/issues", issueData);
       dispatch({
         type: actionTypes.CREATE_ISSUE_SUCCESS,
@@ -95,7 +94,6 @@ export const createIssue = (issueData) => {
       });
       console.log("tarea añadida correctamente", response.data)
     } catch (error) {
-      console.log("Error en la solicitud POST:", error.response || error.message);
       dispatch({
         type: actionTypes.CREATE_ISSUE_FAILURE,
         error: error.message,

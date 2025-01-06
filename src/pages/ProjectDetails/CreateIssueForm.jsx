@@ -13,8 +13,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const CreateIssueForm = () => {
+const CreateIssueForm = ({status}) => {
   const {id}=useParams();
+
   const dispatch=useDispatch()
   
   const form = useForm({
@@ -27,11 +28,12 @@ const CreateIssueForm = () => {
 
   const onSubmit = (data) => {
     data.projectId=id;
-console.log(data)
-    dispatch(createIssue({
+    dispatch(
+      createIssue({
       title: data.issueName,
       description: data.description,
       projectId: id,
+      status,
     }))
     console.log("crear datos de la tarea:", data);
   };

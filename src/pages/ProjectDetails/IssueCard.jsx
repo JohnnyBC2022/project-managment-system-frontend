@@ -10,9 +10,17 @@ import {
 import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons";
 import UserList from "./UserList";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteIssue } from "@/Redux/Issue/Action";
 
 const IssueCard = ({item, projectId}) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleIssueDelete=()=>{
+    dispatch(deleteIssue(item.id))
+  }
 
   return (
     <Card className="rounded-md py-1 pb-2">
@@ -36,7 +44,7 @@ const IssueCard = ({item, projectId}) => {
               <DropdownMenuItem>En Progreso</DropdownMenuItem>
               <DropdownMenuItem>Terminado</DropdownMenuItem>
               <DropdownMenuItem>Editar</DropdownMenuItem>
-              <DropdownMenuItem>Eliminar</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleIssueDelete}>Eliminar</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

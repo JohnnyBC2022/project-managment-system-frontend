@@ -4,6 +4,7 @@ export const tags = [
   "Django",
   "Flask",
   "Java",
+  "Javascript",
   "Mongodb",
   "Mysql",
   "Nextjs",

@@ -9,7 +9,7 @@ import {
 } from "@radix-ui/react-icons";
 import { tags } from "@/constants";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProjectCard from "../Project/ProjectCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjects, searchProjects } from "@/Redux/Project/Action";
@@ -21,7 +21,6 @@ const ProjectList = () => {
   const dispatch = useDispatch();
 
   const handleFilterCategory = (value) => {
-    console.log("Tag seleccionado:", value);
     if (value.toLowerCase() === "all") {
       dispatch(fetchProjects({}));
     } else {
@@ -30,7 +29,6 @@ const ProjectList = () => {
   };
 
   const handleFilterTags = (value) => {
-    console.log("Tag seleccionado:", value);
     if (value.toLowerCase() === "todas") {
       dispatch(fetchProjects({}));
     } else {

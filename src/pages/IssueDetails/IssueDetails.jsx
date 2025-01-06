@@ -12,26 +12,36 @@ import {
 } from "@/components/ui/select";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
+import { fetchIssuesById } from "@/Redux/Issue/Action";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjectById } from "@/Redux/Project/Action";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
 
+  const dispatch=useDispatch();
+  const {issueDetails}=useSelector(store=>store.issue)
+  const { projectDetails } = useSelector((store) => store.project);
   const handelUpdateIssueStatus = (status) => {
     console.log(status);
   };
-
+  useEffect(()=>{
+    dispatch(fetchIssuesById(issueId));
+    dispatch(fetchProjectById(projectId))
+  },[issueId, projectId, dispatch])
   return (
     <div className="px-20 py-10 text-gray-400">
       <div className="flex justify-between border p-10 rounded-lg">
         <ScrollArea className="h-[80vh] w-[60%]">
           <div>
             <h1 className="text-lg font-semibold text-gray-400">
-              Crear Navbar
+              {projectDetails?.name}
             </h1>
             <div className="py-5">
-              <h2 className="font-semibold text-gray-400">Descripción</h2>
+              <h2 className="font-semibold text-gray-400">{issueDetails?.title}</h2>
               <p className="text-gray-400 text-sm mt-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              {issueDetails?.description}
               </p>
             </div>
 
