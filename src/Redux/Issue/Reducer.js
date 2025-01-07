@@ -41,7 +41,10 @@ export const issueReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        issues: [...state.issues, action.issue],
+        issueDetails:{
+          ...state.issueDetails,
+          status: action.issues.status
+        },
       };
     case actionTypes.ASSIGNED_ISSUE_TO_USER_SUCCESS:
       return {

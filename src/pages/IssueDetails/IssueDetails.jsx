@@ -13,35 +13,33 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
-import { fetchIssuesById } from "@/Redux/Issue/Action";
+import { fetchIssuesById, updateIssueStatus } from "@/Redux/Issue/Action";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProjectById } from "@/Redux/Project/Action";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
 
-  const dispatch=useDispatch();
-  const {issueDetails}=useSelector(store=>store.issue)
-  const { projectDetails } = useSelector((store) => store.project);
+  const dispatch = useDispatch();
+  const { issueDetails } = useSelector((store) => store.issue);
   const handelUpdateIssueStatus = (status) => {
-    console.log(status);
+    console.log("Nuevo estado seleccionado:", status);
+    dispatch(updateIssueStatus({id:issueId,status}))
   };
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchIssuesById(issueId));
-    dispatch(fetchProjectById(projectId))
-  },[issueId, projectId, dispatch])
+  }, [issueId, dispatch]);
   return (
     <div className="px-20 py-10 text-gray-400">
       <div className="flex justify-between border p-10 rounded-lg">
         <ScrollArea className="h-[80vh] w-[60%]">
           <div>
             <h1 className="text-lg font-semibold text-gray-400">
-              {projectDetails?.name}
+              {issueDetails?.title}
             </h1>
             <div className="py-5">
-              <h2 className="font-semibold text-gray-400">{issueDetails?.title}</h2>
+              <h2 className="font-semibold text-gray-400">Descripción:</h2>
               <p className="text-gray-400 text-sm mt-3">
-              {issueDetails?.description}
+                {issueDetails?.description}
               </p>
             </div>
 
@@ -80,9 +78,9 @@ const IssueDetails = () => {
               <SelectValue placeholder="Pendiente" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="pending">Pendiente</SelectItem>
-              <SelectItem value="in_progress">En Progreso</SelectItem>
-              <SelectItem value="done">Hecho</SelectItem>
+              <SelectItem value="pendiente">Pendiente</SelectItem>
+              <SelectItem value="en_progreso">En Progreso</SelectItem>
+              <SelectItem value="hecho">Hecho</SelectItem>
             </SelectContent>
           </Select>
 
@@ -107,7 +105,7 @@ const IssueDetails = () => {
 
                 <div className="flex gap-10 items-center">
                   <p className="w-[7rem]">Estado</p>
-                  <Badge>En Progreso</Badge>
+                  <Badge>{issueDetails?.status}</Badge>
                 </div>
 
                 <div className="flex gap-10 items-center">
