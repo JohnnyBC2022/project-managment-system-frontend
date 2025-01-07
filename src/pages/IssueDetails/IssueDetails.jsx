@@ -90,11 +90,11 @@ const IssueDetails = () => {
               <div className="space-y-7">
                 <div className="flex gap-10 items-center">
                   <p className="w-[7rem]">Asignado</p>
-                  {issueDetails?.assignee?<div className="flex items-center gap-3">
+                  {issueDetails?.assignee?.fullName ?<div className="flex items-center gap-3">
                     <Avatar className="h-8 w-8 text-xs">
-                      <AvatarFallback>J</AvatarFallback>
+                      <AvatarFallback>{issueDetails?.assignee?.fullName[0]}</AvatarFallback>
                     </Avatar>
-                    <p>Jonathan Baragaño</p>
+                    <p>{issueDetails?.assignee?.fullName}</p>
                   </div>:<p>Sin asignar</p>}
                 </div>
 
