@@ -71,7 +71,7 @@ export const assignedUserToIssue = ({ issueId, userId }) => {
       console.log("tarea asignada a usuario", response.data);
       dispatch({
         type: actionTypes.ASSIGNED_ISSUE_TO_USER_SUCCESS,
-        issues: response.data,
+        payload: response.data,
       });
     } catch (error) {
       console.log("error --", error);
