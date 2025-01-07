@@ -15,18 +15,21 @@ import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
 import { fetchIssuesById, updateIssueStatus } from "@/Redux/Issue/Action";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchComments } from "@/Redux/Comment/Action";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
 
   const dispatch = useDispatch();
   const { issueDetails } = useSelector((store) => store.issue);
+  const { comments } = useSelector((store) => store.comment);
   const handelUpdateIssueStatus = (status) => {
     console.log("Nuevo estado seleccionado:", status);
     dispatch(updateIssueStatus({id:issueId,status}))
   };
   useEffect(() => {
     dispatch(fetchIssuesById(issueId));
+    dispatch(fetchComments(issueId))
   }, [issueId, dispatch]);
   return (
     <div className="px-20 py-10 text-gray-400">
@@ -58,8 +61,8 @@ const IssueDetails = () => {
                 <TabsContent value="comments">
                   {<CreateCommentForm issueId={issueId} />}
                   <div className="mt-8 space-y-5">
-                    {[1, 1, 1].map((item) => (
-                      <CommentCard key={item} />
+                    {comments?.map((item) => (
+                      <CommentCard item={item} key={item.id} />
                     ))}
                   </div>
                 </TabsContent>
