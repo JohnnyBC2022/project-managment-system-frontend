@@ -18,7 +18,6 @@ const ChatBox = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(fetchChatByProject(id));
   }, [id, dispatch]);
@@ -49,38 +48,35 @@ const ChatBox = () => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      console.log(e.key)
+      console.log(e.key);
       handleSendMessage();
     }
   };
 
-  
-
   return (
     <div className="sticky">
       <div className="border rounded-lg">
-        <h1 className="border-b p-5">Chat</h1>
-        <ScrollArea
-        className="h-[32rem] w-full p-5 flex gap-3 flex-col">
-          {chat.messages?.map((item, index) =>
+        <h1 className="p-5 border-b">Chat</h1>
+        <ScrollArea className="h-[32rem] w-full p-5 flex gap-3 flex-col">
+          {chat.messages?.map((item) =>
             item.sender.id !== auth.user.id ? (
-              <div className="flex gap-2 mb-2 justify-start" key={item.id}>
+              <div className="flex justify-start gap-2 mb-2" key={item.id}>
                 <Avatar>
-                  <AvatarFallback>J</AvatarFallback>
+                  <AvatarFallback>{item.sender.fullName[0]}</AvatarFallback>
                 </Avatar>
-                <div className="space-y-2 py-2 px-5 border rounded-ss-2xl rounded-e-xl">
+                <div className="px-5 py-2 space-y-2 border rounded-ss-2xl rounded-e-xl">
                   <p>{item.sender.fullName}</p>
                   <p className="text-gray-300">{item.content}</p>
                 </div>
               </div>
             ) : (
-              <div className="flex gap-2 mb-2 justify-end" key={item}>
-                <div className="space-y-2 py-2 px-5 border rounded-se-2xl rounded-s-xl">
+              <div className="flex justify-end gap-2 mb-2" key={item.id}>
+                <div className="px-5 py-2 space-y-2 border rounded-se-2xl rounded-s-xl">
                   <p>{item.sender.fullName}</p>
                   <p className="text-gray-300">{item.content}</p>
                 </div>
                 <Avatar>
-                  <AvatarFallback>J</AvatarFallback>
+                  <AvatarFallback>{item.sender.fullName[0]}</AvatarFallback>
                 </Avatar>
               </div>
             )
@@ -92,13 +88,13 @@ const ChatBox = () => {
             onChange={handleMessageChange}
             onKeyDown={handleKeyDown}
             rows="2"
-            className="py-7 border-t outline-none focus:outline-none focus:ring-0 rounded-none border-b-0 border-x-0"
+            className="border-t border-b-0 rounded-none outline-none py-7 focus:outline-none focus:ring-0 border-x-0"
             placeholder="Escribe tu mensaje..."
           />
           <Button
             onClick={handleSendMessage}
             type="submit"
-            className="absolute right-2 top-3 rounded-full"
+            className="absolute rounded-full right-2 top-3"
             size="icon"
           >
             <PaperPlaneIcon />
