@@ -6,6 +6,7 @@ import {
   DialogClose,
   DialogContent,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -19,14 +20,14 @@ import { fetchProjectById } from "@/Redux/Project/Action";
 import { useParams } from "react-router-dom";
 
 const ProjectDetails = () => {
-  const dispatch=useDispatch();
-  const {project}=useSelector(store=>store)
-  const {id}=useParams()
+  const dispatch = useDispatch();
+  const { project } = useSelector((store) => store);
+  const { id } = useParams();
 
   const handleProjectInvitation = () => {};
-  useEffect(()=>{
-    dispatch(fetchProjectById(id))
-  },[id])
+  useEffect(() => {
+    dispatch(fetchProjectById(id));
+  }, [id]);
   return (
     <>
       <div className="mt-5 lg:px-10">
@@ -38,7 +39,7 @@ const ProjectDetails = () => {
               </h1>
               <div className="space-y-5 pb-10 text-sm">
                 <p className="w-full md:max-w-lg lg:max-w-xl ">
-                {project.projectDetails?.description}
+                  {project.projectDetails?.description}
                 </p>
 
                 <div className="flex">
@@ -68,8 +69,11 @@ const ProjectDetails = () => {
                         </Button>
                       </DialogClose>
                     </DialogTrigger>
+
                     <DialogContent>
-                      <DialogHeader>Invitar al Equipo</DialogHeader>
+                      <DialogHeader>
+                        <DialogTitle>Invitar al Equipo</DialogTitle>
+                      </DialogHeader>
                       <InviteUserForm />
                     </DialogContent>
                   </Dialog>

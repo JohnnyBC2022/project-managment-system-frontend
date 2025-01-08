@@ -85,7 +85,11 @@ export const inviteToProject = ({ email, projectId }) =>
       console.log("Invitando al proyecto con id", data);
       dispatch({ type: INVITE_TO_PROJECT_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error);
+      console.error("Error invitando al proyecto:", {
+        message: error.message,
+        response: error.response,
+        config: error.config,
+      });
     }
 };
 

@@ -1,5 +1,5 @@
 
-import { ACCEPT_INVITATION_REQUEST, CREATE_PROJECT_REQUEST, CREATE_PROJECT_SUCCESS, DELETE_PROJECT_REQUEST, DELETE_PROJECT_SUCCESS, FETCH_PROJECTS_BY_ID_REQUEST, FETCH_PROJECTS_BY_ID_SUCCESS, FETCH_PROJECTS_REQUEST, FETCH_PROJECTS_SUCCESS, INVITE_TO_PROJECT_REQUEST, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes";
+import { ACCEPT_INVITATION_REQUEST, CREATE_PROJECT_REQUEST, CREATE_PROJECT_SUCCESS, DELETE_PROJECT_REQUEST, DELETE_PROJECT_SUCCESS, FETCH_PROJECTS_BY_ID_REQUEST, FETCH_PROJECTS_BY_ID_SUCCESS, FETCH_PROJECTS_REQUEST, FETCH_PROJECTS_SUCCESS, INVITE_TO_PROJECT_FAILURE, INVITE_TO_PROJECT_REQUEST, INVITE_TO_PROJECT_SUCCESS, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes";
 
 
 const initialState = {
@@ -59,6 +59,18 @@ export const projectReducer = (state = initialState, action) => {
             projects: state.projects.filter(project => project.id !== action.projectId),
             error:null
         }
+        case INVITE_TO_PROJECT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+            };
+        case INVITE_TO_PROJECT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
     default:
       return state;
   }
