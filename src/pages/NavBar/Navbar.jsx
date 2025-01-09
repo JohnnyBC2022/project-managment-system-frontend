@@ -15,7 +15,6 @@ import {
 import { PersonIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { store } from "@/Redux/store";
 import { logout } from "@/Redux/Auth/Action";
 
 const Navbar = () => {
@@ -27,7 +26,7 @@ const Navbar = () => {
     dispatch(logout())
   }
   return (
-    <div className="border-b py-4 px-5 flex items-center justify-between">
+    <div className="flex items-center justify-between px-5 py-4 border-b">
       <div className="flex items-center gap-3">
         <p className="cursor-pointer" onClick={() => navigate("/")}>
           Gestión de Proyectos
@@ -47,13 +46,13 @@ const Navbar = () => {
         </Button>
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className="flex items-center gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button
               size="icon"
               variant="outline"
-              className="rounded-full border-2 border-green-500"
+              className="border-2 border-green-500 rounded-full"
             >
               <PersonIcon />
             </Button>

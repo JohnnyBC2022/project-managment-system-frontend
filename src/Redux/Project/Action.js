@@ -2,6 +2,7 @@ import api from "@/config/api";
 import {
     ACCEPT_INVITATION_REQUEST,
   ACCEPT_INVITATION_SUCCESS,
+  CLOSE_EDIT_PROJECT_MODAL,
   CREATE_PROJECT_REQUEST,
   CREATE_PROJECT_SUCCESS,
   DELETE_PROJECT_REQUEST,
@@ -11,8 +12,12 @@ import {
   FETCH_PROJECTS_SUCCESS,
   INVITE_TO_PROJECT_REQUEST,
   INVITE_TO_PROJECT_SUCCESS,
+  OPEN_EDIT_PROJECT_MODAL,
   SEARCH_PROJECTS_REQUEST,
   SEARCH_PROJECTS_SUCCESS,
+  UPDATE_PROJECT_FAILURE,
+  UPDATE_PROJECT_REQUEST,
+  UPDATE_PROJECT_SUCCESS,
 } from "./ActionTypes";
 
 export const fetchProjects = ({ category, tag }) =>
@@ -109,3 +114,34 @@ export const acceptInvitation = ({ token, navigate }) =>
       console.log("error", error);
     }
 };
+
+export const updateProject = (projectId, projectData) => async (dispatch) => {
+  dispatch({ type: UPDATE_PROJECT_REQUEST });
+  try {
+    console.log("Enviando al backend", { projectId, projectData });
+
+    // Verifica que projectId sea una cadena o número
+    if (typeof projectId !== 'string' && typeof projectId !== 'number') {
+      throw new Error("projectId no es válido");
+    }
+
+    // Asegúrate de pasar solo el projectId y el resto de los datos como projectData
+    const { data } = await api.patch(`/api/projects/${projectId}`, projectData);
+    console.log("Actualizando el proyecto", data);
+    dispatch({ type: UPDATE_PROJECT_SUCCESS, project: data });
+  } catch (error) {
+    console.log("Error al actualizar el proyecto", error);
+    dispatch({ type: UPDATE_PROJECT_FAILURE, error: error.message });
+  }
+};
+
+
+export const openEditProjectModal = (project) => ({
+  type: OPEN_EDIT_PROJECT_MODAL,
+  payload: project,
+});
+
+export const closeEditProjectModal = () => ({
+  type: CLOSE_EDIT_PROJECT_MODAL,
+});
+

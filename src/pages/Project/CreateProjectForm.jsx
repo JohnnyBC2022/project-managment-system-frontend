@@ -16,12 +16,12 @@ import {
   SelectContent,
 } from "@/components/ui/select";
 import { tags } from "@/constants";
-import { createProject } from "@/Redux/Project/Action";
+import { createProject, updateProject } from "@/Redux/Project/Action";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-const CreateProjectForm = () => {
+const CreateProjectForm = ({projectData}) => {
   const dispatch = useDispatch()
 
   const handleTagsChange = (newValue) => {
@@ -37,15 +37,26 @@ const CreateProjectForm = () => {
   const form = useForm({
     //resolver:zod
     defaultValues: {
-      name: "",
-      description: "",
-      category: "fullstack",
-      tags: ["Javascript", "React"],
+      projectId: projectData?.id || "",
+      name: projectData?.name || "",
+      description: projectData?.description || "",
+      category: projectData?.category || "fullstack",
+      tags: projectData?.tags || ["Javascript", "React"],
     },
   });
 
+  console.log("Valores del formulario:", form.getValues());
+
   const onSubmit = (data) => {
-    dispatch(createProject(data))
+    console.log("Datos recibidos al enviar el formulario:", data);
+    if (projectData) {
+      console.log("Datos del proyecto para actualizar:", { ...data, projectId: projectData.id });
+      dispatch(updateProject(projectData.id,{...data}))
+    } else {
+      dispatch(createProject(data))
+    }
+
+    
     console.log("crear datos del proyecto:", data);
   };
   return (
@@ -61,7 +72,7 @@ const CreateProjectForm = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Nombre del proyecto..."
                   />
                 </FormControl>
@@ -79,7 +90,7 @@ const CreateProjectForm = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Descripción del proyecto..."
                   />
                 </FormControl>
@@ -96,7 +107,7 @@ const CreateProjectForm = () => {
                 <FormControl>
                   <Select
                     onValueChange={(value) => field.onChange(value)}
-                    defaultValue={field.value || "fullstack"} // Default inicial
+                    defaultValue={field.value || "fullstack"} 
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Categoría" />
@@ -129,22 +140,22 @@ const CreateProjectForm = () => {
                     </SelectTrigger>
                     <SelectContent>
                       {tags.map((item) => (
-                        <SelectItem key={item} value={item}>
+                        <SelectItem key={item.id} value={item}>
                           {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </FormControl>
-                <div className="flex gap-1 flex-wrap">
+                <div className="flex flex-wrap gap-1">
                   {field.value.map((item) => (
                     <div
-                      key={item}
+                      key={item.id}
                       onClick={() => handleTagsChange(item)}
-                      className="cursor-pointer flex items-center border gap-2 py-1 px-4 rounded-full"
+                      className="flex items-center gap-2 px-4 py-1 border rounded-full cursor-pointer"
                     >
                       <span className="text-sm">{item}</span>
-                      <Cross1Icon className="h-3 w-3" />
+                      <Cross1Icon className="w-3 h-3" />
                     </div>
                   ))}
                 </div>
@@ -164,9 +175,9 @@ const CreateProjectForm = () => {
             ) : (
               <Button
                 type="submit"
-                className="w-full  text-white uppercase mt-5"
+                className="w-full mt-5 text-white uppercase"
               >
-                Crear Proyecto
+                {projectData ? "Actualizar Proyecto" : "Crear Proyecto"}
               </Button>
             )}
           </DialogClose>
