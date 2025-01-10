@@ -11,21 +11,30 @@ import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons";
 import UserList from "./UserList";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteIssue } from "@/Redux/Issue/Action";
+import { deleteIssue, openEditIssueModal } from "@/Redux/Issue/Action";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import CreateIssueForm from "./CreateIssueForm";
 
 const IssueCard = ({item, projectId}) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  const [isOpen, setIsOpen]=useState(false)
+
   const handleIssueDelete=()=>{
     dispatch(deleteIssue(item.id))
   }
 
+  const handleIssueUpdate=()=>{
+    setIsOpen(true)
+  }
+
   return (
-    <Card className="rounded-md py-1 pb-2">
+    <Card className="py-1 pb-2 rounded-md">
       <CardHeader className="py-0 pb-1">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <CardTitle
             className="cursor-pointer"
             onClick={() => navigate(`/project/${projectId}/issue/${item.id}`)}
@@ -43,7 +52,7 @@ const IssueCard = ({item, projectId}) => {
             <DropdownMenuContent>
               <DropdownMenuItem>En Progreso</DropdownMenuItem>
               <DropdownMenuItem>Terminado</DropdownMenuItem>
-              <DropdownMenuItem>Editar</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleIssueUpdate}>Editar</DropdownMenuItem>
               <DropdownMenuItem onClick={handleIssueDelete}>Eliminar</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -55,7 +64,7 @@ const IssueCard = ({item, projectId}) => {
           <DropdownMenu className="w-[30rem] border border-red-400">
             <DropdownMenuTrigger>
               <Button
-                className="bg-gray-900 hover:text-green-300 text-white rounded-full"
+                className="text-white bg-gray-900 rounded-full hover:text-green-300"
                 size="icon"
               >
                 <Avatar>
@@ -70,6 +79,15 @@ const IssueCard = ({item, projectId}) => {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Actualizar Tarea</DialogTitle>
+            </DialogHeader>
+            <CreateIssueForm issueData={item} status={item.status}/>
+          </DialogContent>
+        </Dialog>
       </CardContent>
     </Card>
   );

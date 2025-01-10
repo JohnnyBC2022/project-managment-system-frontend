@@ -8,35 +8,66 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createIssue } from "@/Redux/Issue/Action";
+import { createIssue, updateIssue } from "@/Redux/Issue/Action";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const CreateIssueForm = ({status}) => {
+const CreateIssueForm = ({status, issueData}) => {
   const {id}=useParams();
 
   const dispatch=useDispatch()
   
+
+  
   const form = useForm({
     //resolver:zod
     defaultValues: {
-      issueName: "",
-      description: "",
+      issueName: issueData?.title ||  "",
+      description: issueData?.description || "",
     },
   });
 
   const onSubmit = (data) => {
-    data.projectId=id;
-    dispatch(
-      createIssue({
-      title: data.issueName,
-      description: data.description,
-      projectId: id,
-      status,
-    }))
-    console.log("crear datos de la tarea:", data);
+    if (issueData) {
+      // Actualizar tarea existente
+      dispatch(
+        updateIssue(issueData.id, {
+          title: data.issueName,
+          description: data.description,
+          projectId: id,
+          status,
+        })
+      );
+      console.log("Actualizar tarea:", data);
+    } else {
+      // Crear nueva tarea
+      dispatch(
+        createIssue({
+          title: data.issueName,
+          description: data.description,
+          projectId: id,
+          status,
+        })
+      );
+      console.log("Crear nueva tarea:", data);
+    }
   };
+
+/*   const onSubmit = (data) => {
+    console.log("Datos recibidos al enviar el formulario:", data);
+
+    // Asegúrate de que el nombre del campo sea issueName, ya que estás usando eso en el formulario.
+    if (issueData) {
+      console.log("Datos de la tarea para actualizar:", { ...data, issueId: issueData.id });
+      dispatch(updateIssue(issueData.id,{...data}));
+    } else {
+      console.log("Crear nueva tarea con datos:", data);
+      dispatch(
+        createIssue({data,projectId: id,
+          status,}))
+    }
+}; */
   return (
     <div>
       <Form {...form}>
@@ -50,7 +81,7 @@ const CreateIssueForm = ({status}) => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Nombre tarea..."
                   />
                 </FormControl>
@@ -68,7 +99,7 @@ const CreateIssueForm = ({status}) => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Descripción..."
                   />
                 </FormControl>
@@ -78,8 +109,8 @@ const CreateIssueForm = ({status}) => {
           />
 
           <DialogClose>
-            <Button type="submit" className="w-full  text-white uppercase mt-5">
-              Crear Tarea
+            <Button type="submit" className="w-full mt-5 text-white uppercase">
+            {issueData ? "Actualizar Tarea" : "Crear Tarea"}
             </Button>
           </DialogClose>
         </form>

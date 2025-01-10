@@ -118,3 +118,33 @@ export const deleteIssue = (issueId) => {
     }
   };
 };
+
+export const updateIssue = (id, issueData) => {
+  return async (dispatch) => {
+    dispatch({ type: actionTypes.UPDATE_ISSUE_REQUEST });
+    try {
+      const {data} = await api.put(`/api/issues/${id}`, issueData);
+      console.log("tarea actualizada", data);
+      dispatch({
+        type: actionTypes.UPDATE_ISSUE_SUCCESS,
+        issue: data,
+      });
+    } catch (error) {
+      console.log("error --", error);
+      dispatch({
+        type: actionTypes.UPDATE_ISSUE_FAILURE,
+        error: error.message,
+      });
+    }
+  };
+};
+
+export const openEditIssueModal = (issue) => ({
+  type: actionTypes.OPEN_EDIT_ISSUE_MODAL,
+  payload: issue,
+});
+
+export const closeEditIssueModal = () => ({
+  type: actionTypes.CLOSE_EDIT_ISSUE_MODAL,
+});
+
