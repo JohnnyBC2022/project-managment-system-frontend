@@ -19,12 +19,12 @@ import { logout } from "@/Redux/Auth/Action";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const {auth}=useSelector(store=>store)
-  const dispatch=useDispatch()
+  const { auth } = useSelector((store) => store);
+  const dispatch = useDispatch();
 
-  const handleLogout = ()=>{
-    dispatch(logout())
-  }
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <div className="flex items-center justify-between px-5 py-4 border-b">
       <div className="flex items-center gap-3">
@@ -58,7 +58,9 @@ const Navbar = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem onClick={handleLogout}>Cerrar sesión</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
+              Cerrar sesión
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         <p>{auth.user?.fullName}</p>

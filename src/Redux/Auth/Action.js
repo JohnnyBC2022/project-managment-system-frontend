@@ -48,7 +48,7 @@ export const getUser = () => async (dispatch) => {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     });
-      dispatch({ type: GET_USER_SUCCESS, payload: data });
+    dispatch({ type: GET_USER_SUCCESS, payload: data });
 
     console.log("usuario encontrado correctamente", data);
   } catch (error) {
@@ -56,7 +56,7 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
-export const logout = () => async (dispatch) =>{
-    dispatch({type:LOGOUT})
-    localStorage.clear()
-}
+export const logout = () => async (dispatch) => {
+  dispatch({ type: LOGOUT });
+  localStorage.clear();
+};

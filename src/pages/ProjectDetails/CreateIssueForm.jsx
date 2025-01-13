@@ -13,17 +13,15 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const CreateIssueForm = ({status, issueData}) => {
-  const {id}=useParams();
+const CreateIssueForm = ({ status, issueData }) => {
+  const { id } = useParams();
 
-  const dispatch=useDispatch()
-  
+  const dispatch = useDispatch();
 
-  
   const form = useForm({
     //resolver:zod
     defaultValues: {
-      issueName: issueData?.title ||  "",
+      issueName: issueData?.title || "",
       description: issueData?.description || "",
     },
   });
@@ -54,7 +52,7 @@ const CreateIssueForm = ({status, issueData}) => {
     }
   };
 
-/*   const onSubmit = (data) => {
+  /*   const onSubmit = (data) => {
     console.log("Datos recibidos al enviar el formulario:", data);
 
     // Asegúrate de que el nombre del campo sea issueName, ya que estás usando eso en el formulario.
@@ -110,7 +108,7 @@ const CreateIssueForm = ({status, issueData}) => {
 
           <DialogClose>
             <Button type="submit" className="w-full mt-5 text-white uppercase">
-            {issueData ? "Actualizar Tarea" : "Crear Tarea"}
+              {issueData ? "Actualizar Tarea" : "Crear Tarea"}
             </Button>
           </DialogClose>
         </form>

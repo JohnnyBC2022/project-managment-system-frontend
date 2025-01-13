@@ -12,6 +12,7 @@ export const tags = [
   "Python",
   "React",
   "Spring boot",
+  "Typescript",
 ];
 
 export const freePlan = [

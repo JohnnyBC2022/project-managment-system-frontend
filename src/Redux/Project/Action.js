@@ -1,6 +1,6 @@
 import api from "@/config/api";
 import {
-    ACCEPT_INVITATION_REQUEST,
+  ACCEPT_INVITATION_REQUEST,
   ACCEPT_INVITATION_SUCCESS,
   CLOSE_EDIT_PROJECT_MODAL,
   CREATE_PROJECT_REQUEST,
@@ -20,7 +20,8 @@ import {
   UPDATE_PROJECT_SUCCESS,
 } from "./ActionTypes";
 
-export const fetchProjects = ({ category, tag }) =>
+export const fetchProjects =
+  ({ category, tag }) =>
   async (dispatch) => {
     dispatch({ type: FETCH_PROJECTS_BY_ID_REQUEST });
     try {
@@ -67,7 +68,8 @@ export const fetchProjectById = (id) => async (dispatch) => {
   }
 };
 
-export const deleteProject = ({ projectId }) =>
+export const deleteProject =
+  ({ projectId }) =>
   async (dispatch) => {
     dispatch({ type: DELETE_PROJECT_REQUEST });
     try {
@@ -77,9 +79,10 @@ export const deleteProject = ({ projectId }) =>
     } catch (error) {
       console.log("error", error);
     }
-};
+  };
 
-export const inviteToProject = ({ email, projectId }) =>
+export const inviteToProject =
+  ({ email, projectId }) =>
   async (dispatch) => {
     dispatch({ type: INVITE_TO_PROJECT_REQUEST });
     try {
@@ -96,24 +99,25 @@ export const inviteToProject = ({ email, projectId }) =>
         config: error.config,
       });
     }
-};
+  };
 
-export const acceptInvitation = ({ token, navigate }) =>
+export const acceptInvitation =
+  ({ token, navigate }) =>
   async (dispatch) => {
     dispatch({ type: ACCEPT_INVITATION_REQUEST });
     try {
       const { data } = await api.get("/api/projects/accept_invitation", {
-        params:{
-            token
-        }
+        params: {
+          token,
+        },
       });
-      navigate("/project/"+data.projectId)
+      navigate("/project/" + data.projectId);
       console.log("Aceptando invitación al proyecto", data);
       dispatch({ type: ACCEPT_INVITATION_SUCCESS, payload: data });
     } catch (error) {
       console.log("error", error);
     }
-};
+  };
 
 export const updateProject = (projectId, projectData) => async (dispatch) => {
   dispatch({ type: UPDATE_PROJECT_REQUEST });
@@ -121,7 +125,7 @@ export const updateProject = (projectId, projectData) => async (dispatch) => {
     console.log("Enviando al backend", { projectId, projectData });
 
     // Verifica que projectId sea una cadena o número
-    if (typeof projectId !== 'string' && typeof projectId !== 'number') {
+    if (typeof projectId !== "string" && typeof projectId !== "number") {
       throw new Error("projectId no es válido");
     }
 
@@ -135,7 +139,6 @@ export const updateProject = (projectId, projectData) => async (dispatch) => {
   }
 };
 
-
 export const openEditProjectModal = (project) => ({
   type: OPEN_EDIT_PROJECT_MODAL,
   payload: project,
@@ -144,4 +147,3 @@ export const openEditProjectModal = (project) => ({
 export const closeEditProjectModal = () => ({
   type: CLOSE_EDIT_PROJECT_MODAL,
 });
-

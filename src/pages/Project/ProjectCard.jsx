@@ -19,15 +19,15 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 const ProjectCard = ({ item }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen]= useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteProject({ projectId: item.id }));
   };
-  
-  const handleUpdate = ()=>{
-    setIsOpen(true)
-  }
+
+  const handleUpdate = () => {
+    setIsOpen(true);
+  };
 
   return (
     <Card className="w-full p-5 lg:max-w-3xl">
@@ -52,7 +52,9 @@ const ProjectCard = ({ item }) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem onClick={handleUpdate}>Actualizar</DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleUpdate}>
+                    Actualizar
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleDelete}>
                     Eliminar
                   </DropdownMenuItem>
@@ -77,7 +79,8 @@ const ProjectCard = ({ item }) => {
           <DialogHeader>
             <DialogTitle>Actualizar Proyecto</DialogTitle>
           </DialogHeader>
-          <CreateProjectForm projectData={item} /> {/* Pasa los datos del proyecto al formulario */}
+          <CreateProjectForm projectData={item} />{" "}
+          {/* Pasa los datos del proyecto al formulario */}
         </DialogContent>
       </Dialog>
     </Card>

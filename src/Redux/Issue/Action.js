@@ -92,7 +92,7 @@ export const createIssue = (issueData) => {
         type: actionTypes.CREATE_ISSUE_SUCCESS,
         issue: response.data,
       });
-      console.log("tarea añadida correctamente", response.data)
+      console.log("tarea añadida correctamente", response.data);
     } catch (error) {
       dispatch({
         type: actionTypes.CREATE_ISSUE_FAILURE,
@@ -123,7 +123,7 @@ export const updateIssue = (id, issueData) => {
   return async (dispatch) => {
     dispatch({ type: actionTypes.UPDATE_ISSUE_REQUEST });
     try {
-      const {data} = await api.put(`/api/issues/${id}`, issueData);
+      const { data } = await api.put(`/api/issues/${id}`, issueData);
       console.log("tarea actualizada", data);
       dispatch({
         type: actionTypes.UPDATE_ISSUE_SUCCESS,
@@ -147,4 +147,3 @@ export const openEditIssueModal = (issue) => ({
 export const closeEditIssueModal = () => ({
   type: actionTypes.CLOSE_EDIT_ISSUE_MODAL,
 });
-

@@ -7,15 +7,13 @@ import { commentReducer } from "./Comment/Reducer";
 import { issueReducer } from "./Issue/Reducer";
 import { subscriptionReducer } from "./Subscription/Reducer";
 
+const rootReducer = combineReducers({
+  auth: authReducer,
+  project: projectReducer,
+  chat: chatReducer,
+  comment: commentReducer,
+  issue: issueReducer,
+  subscription: subscriptionReducer,
+});
 
-
-const rootReducer=combineReducers({
-    auth: authReducer,
-    project: projectReducer,
-    chat: chatReducer,
-    comment: commentReducer,
-    issue: issueReducer,
-    subscription: subscriptionReducer
-})
-
-export const store = legacy_createStore(rootReducer,applyMiddleware(thunk))
+export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));

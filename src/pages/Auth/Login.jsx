@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const form = useForm({
     //resolver:zod
@@ -23,7 +23,7 @@ const Login = () => {
   });
 
   const onSubmit = (data) => {
-    dispatch(login(data))
+    dispatch(login(data));
     console.log("iniciar sesión:", data);
   };
   return (
@@ -40,7 +40,7 @@ const Login = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Tu mejor correo electrónico..."
                   />
                 </FormControl>
@@ -58,7 +58,7 @@ const Login = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Contraseña..."
                   />
                 </FormControl>
@@ -67,7 +67,7 @@ const Login = () => {
             )}
           />
 
-          <Button type="submit" className="w-full  text-white uppercase mt-5">
+          <Button type="submit" className="w-full mt-5 text-white uppercase">
             Iniciar Sesión
           </Button>
           <p className="mt-5">¿Todavía no tienes tu cuenta?</p>

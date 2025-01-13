@@ -88,7 +88,7 @@ export const issueReducer = (state = initialState, action) => {
         issues: state.issues.map((issue) =>
           issue.id === action.issue.id ? action.issue : issue
         ),
-        error: null
+        error: null,
       };
     case actionTypes.UPDATE_ISSUE_FAILURE:
       return {
@@ -96,18 +96,18 @@ export const issueReducer = (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
-      case actionTypes.OPEN_EDIT_ISSUE_MODAL:
-        return {
-          ...state,
-          isEditModalOpen: true,
-          issueToEdit: action.payload,
-        };
-      case actionTypes.CLOSE_EDIT_ISSUE_MODAL:
-        return {
-          ...state,
-          isEditModalOpen: false,
-          issueToEdit: null,
-        };
+    case actionTypes.OPEN_EDIT_ISSUE_MODAL:
+      return {
+        ...state,
+        isEditModalOpen: true,
+        issueToEdit: action.payload,
+      };
+    case actionTypes.CLOSE_EDIT_ISSUE_MODAL:
+      return {
+        ...state,
+        isEditModalOpen: false,
+        issueToEdit: null,
+      };
     default:
       return state;
   }

@@ -3,20 +3,23 @@ import SubscriptionCard from "./SubscriptionCard";
 import { useSelector } from "react-redux";
 
 const Subscription = () => {
-  const {subscription}=useSelector(store=>store)
+  const { subscription } = useSelector((store) => store);
   return (
     <div className="p-10">
-      <h1 className="text-5xl font-semibold py-5 pb-16 text-center">
+      <h1 className="py-5 pb-16 text-5xl font-semibold text-center">
         Planes y Precios
       </h1>
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-10 lg:flex-row">
         <SubscriptionCard
           data={{
             planName: "Gratuito",
             features: freePlan,
             planType: "GRATUITO",
             price: 0,
-            buttonName: subscription.userSubscription?.planType=="GRATUITO" ? "Plan Actual" : "Contratar",
+            buttonName:
+              subscription.userSubscription?.planType == "GRATUITO"
+                ? "Plan Actual"
+                : "Contratar",
           }}
         />
         <SubscriptionCard
@@ -25,7 +28,10 @@ const Subscription = () => {
             features: paidPlan,
             planType: "MENSUAL",
             price: 9.99,
-            buttonName: subscription.userSubscription?.planType=="MENSUAL" ? "Plan Actual" : "Contratar",
+            buttonName:
+              subscription.userSubscription?.planType == "MENSUAL"
+                ? "Plan Actual"
+                : "Contratar",
           }}
         />
         <SubscriptionCard
@@ -34,7 +40,10 @@ const Subscription = () => {
             features: annualPlan,
             planType: "ANUAL",
             price: 83.99,
-            buttonName: subscription.userSubscription?.planType=="ANUAL" ? "Plan Actual" : "Contratar",
+            buttonName:
+              subscription.userSubscription?.planType == "ANUAL"
+                ? "Plan Actual"
+                : "Contratar",
           }}
         />
       </div>

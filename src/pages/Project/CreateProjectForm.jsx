@@ -21,8 +21,8 @@ import { Cross1Icon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-const CreateProjectForm = ({projectData}) => {
-  const dispatch = useDispatch()
+const CreateProjectForm = ({ projectData }) => {
+  const dispatch = useDispatch();
 
   const handleTagsChange = (newValue) => {
     const currentTags = form.getValues("tags");
@@ -50,13 +50,15 @@ const CreateProjectForm = ({projectData}) => {
   const onSubmit = (data) => {
     console.log("Datos recibidos al enviar el formulario:", data);
     if (projectData) {
-      console.log("Datos del proyecto para actualizar:", { ...data, projectId: projectData.id });
-      dispatch(updateProject(projectData.id,{...data}))
+      console.log("Datos del proyecto para actualizar:", {
+        ...data,
+        projectId: projectData.id,
+      });
+      dispatch(updateProject(projectData.id, { ...data }));
     } else {
-      dispatch(createProject(data))
+      dispatch(createProject(data));
     }
 
-    
     console.log("crear datos del proyecto:", data);
   };
   return (
@@ -107,7 +109,7 @@ const CreateProjectForm = ({projectData}) => {
                 <FormControl>
                   <Select
                     onValueChange={(value) => field.onChange(value)}
-                    defaultValue={field.value || "fullstack"} 
+                    defaultValue={field.value || "fullstack"}
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Categoría" />

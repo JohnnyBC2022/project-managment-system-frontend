@@ -14,8 +14,8 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const InviteUserForm = () => {
-  const dispatch=useDispatch()
-  const {id}=useParams()
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const form = useForm({
     //resolver:zod
     defaultValues: {
@@ -24,7 +24,7 @@ const InviteUserForm = () => {
   });
 
   const onSubmit = (data) => {
-    dispatch(inviteToProject({email: data.email, projectId:id}))
+    dispatch(inviteToProject({ email: data.email, projectId: id }));
     console.log("crear datos del proyecto:", data);
   };
   return (
@@ -40,7 +40,7 @@ const InviteUserForm = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Email del usuario..."
                   />
                 </FormControl>
@@ -50,7 +50,7 @@ const InviteUserForm = () => {
           />
 
           <DialogClose>
-            <Button type="submit" className="w-full  text-white uppercase mt-5">
+            <Button type="submit" className="w-full mt-5 text-white uppercase">
               Invitar Usuario
             </Button>
           </DialogClose>

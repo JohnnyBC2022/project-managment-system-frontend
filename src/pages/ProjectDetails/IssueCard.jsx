@@ -13,21 +13,26 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteIssue, updateIssueStatus } from "@/Redux/Issue/Action";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import CreateIssueForm from "./CreateIssueForm";
 
-const IssueCard = ({item, projectId}) => {
+const IssueCard = ({ item, projectId }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen]=useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleIssueDelete=()=>{
-    dispatch(deleteIssue(item.id))
-  }
+  const handleIssueDelete = () => {
+    dispatch(deleteIssue(item.id));
+  };
 
-  const handleIssueUpdate=()=>{
-    setIsOpen(true)
-  }
+  const handleIssueUpdate = () => {
+    setIsOpen(true);
+  };
 
   const handleStatusChange = (newStatus) => {
     dispatch(updateIssueStatus({ id: item.id, status: newStatus }));
@@ -58,7 +63,7 @@ const IssueCard = ({item, projectId}) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-            {statusOptions[item.status].map((status) => (
+              {statusOptions[item.status].map((status) => (
                 <DropdownMenuItem
                   key={status.id}
                   onClick={() => handleStatusChange(status)}
@@ -69,16 +74,19 @@ const IssueCard = ({item, projectId}) => {
                 </DropdownMenuItem>
               ))}
 
-              
-              <DropdownMenuItem onClick={handleIssueUpdate}>Editar</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleIssueDelete}>Eliminar</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleIssueUpdate}>
+                Editar
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleIssueDelete}>
+                Eliminar
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </CardHeader>
       <CardContent className="py-0">
         <div className="flex items-center justify-between">
-          <p>FBP - {1}</p>
+          <p>Tarea - {item.id}</p>
           <DropdownMenu className="w-[30rem] border border-red-400">
             <DropdownMenuTrigger>
               <Button
@@ -93,7 +101,7 @@ const IssueCard = ({item, projectId}) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <UserList issueDetails={item}/>
+              <UserList issueDetails={item} />
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -103,7 +111,7 @@ const IssueCard = ({item, projectId}) => {
             <DialogHeader>
               <DialogTitle>Actualizar Tarea</DialogTitle>
             </DialogHeader>
-            <CreateIssueForm issueData={item} status={item.status}/>
+            <CreateIssueForm issueData={item} status={item.status} />
           </DialogContent>
         </Dialog>
       </CardContent>

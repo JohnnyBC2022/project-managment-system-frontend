@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 const Signup = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const form = useForm({
     //resolver:zod
     defaultValues: {
@@ -23,7 +23,7 @@ const Signup = () => {
   });
 
   const onSubmit = (data) => {
-    dispatch(register(data))
+    dispatch(register(data));
     console.log("registrarse:", data);
   };
   return (
@@ -40,7 +40,7 @@ const Signup = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Tu nombre completo..."
                   />
                 </FormControl>
@@ -58,7 +58,7 @@ const Signup = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Tu mejor correo electrónico..."
                   />
                 </FormControl>
@@ -76,7 +76,7 @@ const Signup = () => {
                   <Input
                     {...field}
                     type="text"
-                    className="border w-full py-5 px-5 border-gray-700"
+                    className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Contraseña..."
                   />
                 </FormControl>
@@ -85,7 +85,7 @@ const Signup = () => {
             )}
           />
 
-          <Button type="submit" className="w-full  text-white uppercase mt-5">
+          <Button type="submit" className="w-full mt-5 text-white uppercase">
             Registrarse
           </Button>
           <p className="mt-5">¿Ya tienes tu cuenta?</p>
