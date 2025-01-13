@@ -28,6 +28,7 @@ const UpgradeSuccess = () => {
     if (planType) {
       const currentDate = new Date();
       const formattedStartDate = currentDate.toLocaleDateString();
+      let newEndDate = "";
 
       if (planType === "MENSUAL") {
         currentDate.setMonth(currentDate.getMonth() + 1);
@@ -57,7 +58,7 @@ const UpgradeSuccess = () => {
               Fecha de finalización de la suscripción: {finalDate}
             </p>
           ) : (
-            <p className="text-gray-500">Fecha de finalización no disponible</p>
+            <p className="text-gray-500">Fecha de finalización: -</p>
           )}
           <p>Plan escogido: {planType}</p>
         </div>

@@ -8,7 +8,6 @@ const SubscriptionCard = ({ data, currentPlan }) => {
   const navigate = useNavigate();
 
   const handleUpgrade = () => {
-    // Redirigir al componente de éxito con el tipo de plan en la URL
     navigate(`/upgrade_plan/success?planType=${data.planType}`);
   };
 
@@ -27,7 +26,7 @@ const SubscriptionCard = ({ data, currentPlan }) => {
 
       <div>
         {data.features.map((item) => (
-          <div key={item} className="flex items-center gap-2">
+          <div key={item.id} className="flex items-center gap-2">
             <CheckCircledIcon />
             <p>{item}</p>
           </div>
@@ -37,7 +36,7 @@ const SubscriptionCard = ({ data, currentPlan }) => {
       <Button
         onClick={handleUpgrade}
         className="w-full"
-        disabled={isCurrentPlan} // Deshabilitar el botón si es el plan actual
+        disabled={isCurrentPlan}
       >
         {isCurrentPlan ? "Plan Actual" : "Contratar"}
       </Button>

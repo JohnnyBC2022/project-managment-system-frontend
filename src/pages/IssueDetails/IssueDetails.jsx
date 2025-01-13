@@ -18,22 +18,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchComments } from "@/Redux/Comment/Action";
 
 const IssueDetails = () => {
-  const { projectId, issueId } = useParams();
+  const { issueId } = useParams();
 
   const dispatch = useDispatch();
   const { issueDetails } = useSelector((store) => store.issue);
   const { comments } = useSelector((store) => store.comment);
   const handelUpdateIssueStatus = (status) => {
-    console.log("Nuevo estado seleccionado:", status);
-    dispatch(updateIssueStatus({id:issueId,status}))
+    dispatch(updateIssueStatus({ id: issueId, status }));
   };
   useEffect(() => {
     dispatch(fetchIssuesById(issueId));
-    dispatch(fetchComments(issueId))
+    dispatch(fetchComments(issueId));
   }, [issueId, dispatch]);
   return (
     <div className="px-20 py-10 text-gray-400">
-      <div className="flex justify-between border p-10 rounded-lg">
+      <div className="flex justify-between p-10 border rounded-lg">
         <ScrollArea className="h-[80vh] w-[60%]">
           <div>
             <h1 className="text-lg font-semibold text-gray-400">
@@ -41,7 +40,7 @@ const IssueDetails = () => {
             </h1>
             <div className="py-5">
               <h2 className="font-semibold text-gray-400">Descripción:</h2>
-              <p className="text-gray-400 text-sm mt-3">
+              <p className="mt-3 text-sm text-gray-400">
                 {issueDetails?.description}
               </p>
             </div>
@@ -88,41 +87,49 @@ const IssueDetails = () => {
           </Select>
 
           <div className="border rounded-lg">
-            <p className="border-b py-3 px-5">Detalles</p>
+            <p className="px-5 py-3 border-b">Detalles</p>
             <div className="p-5">
               <div className="space-y-7">
-                <div className="flex gap-10 items-center">
+                <div className="flex items-center gap-10">
                   <p className="w-[7rem]">Asignado</p>
-                  {issueDetails?.assignee?.fullName ?<div className="flex items-center gap-3">
-                    <Avatar className="h-8 w-8 text-xs">
-                      <AvatarFallback>{issueDetails?.assignee?.fullName[0]}</AvatarFallback>
-                    </Avatar>
-                    <p>{issueDetails?.assignee?.fullName}</p>
-                  </div>:<p>Sin asignar</p>}
+                  {issueDetails?.assignee?.fullName ? (
+                    <div className="flex items-center gap-3">
+                      <Avatar className="w-8 h-8 text-xs">
+                        <AvatarFallback>
+                          {issueDetails?.assignee?.fullName[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                      <p>{issueDetails?.assignee?.fullName}</p>
+                    </div>
+                  ) : (
+                    <p>Sin asignar</p>
+                  )}
                 </div>
 
-                <div className="flex gap-10 items-center">
+                <div className="flex items-center gap-10">
                   <p className="w-[7rem]">Etiquetas</p>
                   <p>Ninguna</p>
                 </div>
 
-                <div className="flex gap-10 items-center">
+                <div className="flex items-center gap-10">
                   <p className="w-[7rem]">Estado</p>
                   <Badge>{issueDetails?.status}</Badge>
                 </div>
 
-                <div className="flex gap-10 items-center">
+                <div className="flex items-center gap-10">
                   <p className="w-[7rem]">Comunicado</p>
                   <p>26-12-2024</p>
                 </div>
 
-                <div className="flex gap-10 items-center">
+                <div className="flex items-center gap-10">
                   <p className="w-[7rem]">Equipo</p>
                   <div className="flex items-center gap-3">
-                    <Avatar className="h-8 w-8 text-xs">
-                      <AvatarFallback>J</AvatarFallback>
+                    <Avatar className="w-8 h-8 text-xs">
+                      <AvatarFallback>
+                        {issueDetails?.assignee?.fullName[0]}
+                      </AvatarFallback>
                     </Avatar>
-                    <p>Jonathan Baragaño</p>
+                    <p>{issueDetails?.assignee?.fullName}</p>
                   </div>
                 </div>
               </div>

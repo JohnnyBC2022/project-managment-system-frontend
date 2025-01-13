@@ -25,7 +25,6 @@ const InviteUserForm = () => {
 
   const onSubmit = (data) => {
     dispatch(inviteToProject({ email: data.email, projectId: id }));
-    console.log("crear datos del proyecto:", data);
   };
   return (
     <div>

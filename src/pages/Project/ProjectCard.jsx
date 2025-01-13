@@ -66,8 +66,8 @@ const ProjectCard = ({ item }) => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          {item.tags.map((tag) => (
-            <Badge key={item.id} variant="outline">
+          {item.tags.map((tag, index) => (
+            <Badge key={`${item.id}-${tag}-${index}`} variant="outline">
               {tag}
             </Badge>
           ))}
@@ -80,7 +80,6 @@ const ProjectCard = ({ item }) => {
             <DialogTitle>Actualizar Proyecto</DialogTitle>
           </DialogHeader>
           <CreateProjectForm projectData={item} />{" "}
-          {/* Pasa los datos del proyecto al formulario */}
         </DialogContent>
       </Dialog>
     </Card>

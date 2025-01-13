@@ -18,7 +18,6 @@ export const register = (userData) => async (dispatch) => {
       localStorage.setItem("jwt", data.jwt);
       dispatch({ type: REGISTER_SUCCESS, payload: data });
     }
-
     console.log("registro realizado correctamente", data);
   } catch (error) {
     console.log(error);

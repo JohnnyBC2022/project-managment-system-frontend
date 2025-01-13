@@ -21,7 +21,7 @@ const UserList = ({ issueDetails }) => {
         {project.projectDetails?.team.map((item) => (
           <div
             onClick={() => handleAssignUserToIssue(item.id)}
-            key={item}
+            key={item.id}
             className="flex items-center px-4 py-2 space-x-4 border rounded-md cursor-pointer group hover:bg-slate-800"
           >
             <Avatar>

@@ -38,7 +38,6 @@ const ChatBox = () => {
       })
     );
     setMessage("");
-    console.log("mensaje", message);
   };
 
   const handleMessageChange = (e) => {
@@ -48,7 +47,6 @@ const ChatBox = () => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      console.log(e.key);
       handleSendMessage();
     }
   };

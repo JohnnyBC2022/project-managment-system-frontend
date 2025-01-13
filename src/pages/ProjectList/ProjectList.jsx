@@ -43,9 +43,9 @@ const ProjectList = () => {
 
   return (
     <>
-      <div className="relative px-5 lg:px-0 lg:flex gap-5 justify-center py-5">
+      <div className="relative justify-center gap-5 px-5 py-5 lg:px-0 lg:flex">
         <section className="filterSection">
-          <Card className="p-5 sticky top-10">
+          <Card className="sticky p-5 top-10">
             <div className="flex justify-between lg:w-[20rem]">
               <p className="text-xl tracking-wider">Filtros</p>
               <Button variant="ghost" size="icon">
@@ -59,7 +59,7 @@ const ProjectList = () => {
                   <h1 className="pb-3 text-gray-400 border-b">Categoría</h1>
                   <div className="pt-5">
                     <RadioGroup
-                      className="space-y-3 pt-5"
+                      className="pt-5 space-y-3"
                       defaultValue="Todas"
                       onValueChange={(value) => {
                         handleFilterCategory(value);
@@ -89,7 +89,7 @@ const ProjectList = () => {
                   <h1 className="pb-3 text-gray-400 border-b">Etiqueta</h1>
                   <div className="pt-5">
                     <RadioGroup
-                      className="space-y-3 pt-5"
+                      className="pt-5 space-y-3"
                       defaultValue="all"
                       onValueChange={(value) => {
                         handleFilterTags(value);
@@ -112,8 +112,8 @@ const ProjectList = () => {
           </Card>
         </section>
         <section className="projectListSection w-full lg:w-[48rem]">
-          <div className="flex gap-2 items-center pb-5 justify-between">
-            <div className="relative p-0 w-full">
+          <div className="flex items-center justify-between gap-2 pb-5">
+            <div className="relative w-full p-0">
               <Input
                 className="40% rounded-full px-10"
                 placeholder="Buscar proyecto..."
@@ -127,10 +127,10 @@ const ProjectList = () => {
             <div className="space-y-5 min-h-[74vh]">
               {keyword
                 ? project.searchProjects?.map((item, index) => (
-                    <ProjectCard key={item.id * index} item={item} />
-                  )) /* el index es para que no identifique componentes hijos con el mismo key */
+                    <ProjectCard key={`${item.id}-${index}`} item={item} />
+                  ))
                 : project.projects?.map((item) => (
-                    <ProjectCard key={item.id} item={item} />
+                    <ProjectCard key={`project-${item.id}`} item={item} />
                   ))}
             </div>
           </div>

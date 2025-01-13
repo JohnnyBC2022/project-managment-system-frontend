@@ -45,21 +45,12 @@ const CreateProjectForm = ({ projectData }) => {
     },
   });
 
-  console.log("Valores del formulario:", form.getValues());
-
   const onSubmit = (data) => {
-    console.log("Datos recibidos al enviar el formulario:", data);
     if (projectData) {
-      console.log("Datos del proyecto para actualizar:", {
-        ...data,
-        projectId: projectData.id,
-      });
       dispatch(updateProject(projectData.id, { ...data }));
     } else {
       dispatch(createProject(data));
     }
-
-    console.log("crear datos del proyecto:", data);
   };
   return (
     <div>

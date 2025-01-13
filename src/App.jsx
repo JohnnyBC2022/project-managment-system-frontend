@@ -22,8 +22,6 @@ function App() {
     dispatch(fetchProjects({}));
   }, [auth.jwt]);
 
-  console.log(auth);
-
   return (
     <>
       {auth.user ? (
@@ -43,9 +41,9 @@ function App() {
         </div>
       ) : (
         <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/auth" element={<Auth />} />
-          </Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
       )}
     </>
   );

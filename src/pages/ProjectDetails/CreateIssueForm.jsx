@@ -37,7 +37,6 @@ const CreateIssueForm = ({ status, issueData }) => {
           status,
         })
       );
-      console.log("Actualizar tarea:", data);
     } else {
       // Crear nueva tarea
       dispatch(
@@ -48,24 +47,8 @@ const CreateIssueForm = ({ status, issueData }) => {
           status,
         })
       );
-      console.log("Crear nueva tarea:", data);
     }
   };
-
-  /*   const onSubmit = (data) => {
-    console.log("Datos recibidos al enviar el formulario:", data);
-
-    // Asegúrate de que el nombre del campo sea issueName, ya que estás usando eso en el formulario.
-    if (issueData) {
-      console.log("Datos de la tarea para actualizar:", { ...data, issueId: issueData.id });
-      dispatch(updateIssue(issueData.id,{...data}));
-    } else {
-      console.log("Crear nueva tarea con datos:", data);
-      dispatch(
-        createIssue({data,projectId: id,
-          status,}))
-    }
-}; */
   return (
     <div>
       <Form {...form}>

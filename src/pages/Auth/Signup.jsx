@@ -24,7 +24,6 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     dispatch(register(data));
-    console.log("registrarse:", data);
   };
   return (
     <div className="space-y-5">

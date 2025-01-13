@@ -10,8 +10,10 @@ import { Input } from "@/components/ui/input";
 import { login } from "@/Redux/Auth/Action";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const form = useForm({
@@ -24,7 +26,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     dispatch(login(data));
-    console.log("iniciar sesión:", data);
+    navigate("/");
   };
   return (
     <div className="space-y-5">
@@ -41,7 +43,7 @@ const Login = () => {
                     {...field}
                     type="text"
                     className="w-full px-5 py-5 border border-gray-700"
-                    placeholder="Tu mejor correo electrónico..."
+                    placeholder="Tu correo electrónico..."
                   />
                 </FormControl>
                 <FormMessage />
