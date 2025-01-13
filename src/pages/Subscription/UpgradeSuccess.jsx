@@ -1,11 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  getUserSubscription,
-  upgradeSubscription,
-} from "@/Redux/Subscription/Action";
+import { getUserSubscription, upgradeSubscription } from "@/Redux/Subscription/Action";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -13,16 +10,39 @@ const UpgradeSuccess = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { subscription } = useSelector((store) => store);
+  const [finalDate, setFinalDate] = useState(null); // Para la fecha de finalización
 
   const queryParams = new URLSearchParams(location.search);
-
-  const paymentId = queryParams.get("payment_id");
   const planType = queryParams.get("planType");
 
   useEffect(() => {
-    dispatch(upgradeSubscription({ planType }));
+    // Activar el plan seleccionado
+    if (planType) {
+      dispatch(upgradeSubscription({ planType }));
+    }
+
+    // Obtener datos actualizados de la suscripción
     dispatch(getUserSubscription());
-  }, []);
+
+    // Establecer las fechas
+    if (planType) {
+      const currentDate = new Date();
+      const formattedStartDate = currentDate.toLocaleDateString(); // Fecha sin hora
+      let newEndDate;
+
+      // Establecer la fecha de finalización según el tipo de plan
+      if (planType === "MENSUAL") {
+        currentDate.setMonth(currentDate.getMonth() + 1); // Sumar un mes
+        newEndDate = currentDate.toLocaleDateString();
+      } else if (planType === "ANUAL") {
+        currentDate.setFullYear(currentDate.getFullYear() + 1); // Sumar un año
+        newEndDate = currentDate.toLocaleDateString();
+      }
+
+      setFinalDate(newEndDate); // Actualizamos la fecha de finalización
+    }
+  }, [dispatch, planType]);
+
   return (
     <div className="flex justify-center">
       <Card className="flex flex-col items-center p-5 mt-20 space-y-5">
@@ -32,16 +52,16 @@ const UpgradeSuccess = () => {
         </div>
         <div className="space-y-3">
           <p className="text-green-500">
-            Fecha de inicio de la suscripción:{" "}
-            {subscription.userSubscription?.subscriptionStartDate}
+            Fecha de inicio de la suscripción: {new Date().toLocaleDateString()}
           </p>
-          <p className="text-red-500">
-            Fecha de finalización de la suscripción:{" "}
-            {subscription.userSubscription?.getSubscriptionEndDate}
-          </p>
-          <p className="">
-            Plan escogido: {subscription.userSubscription?.planType}
-          </p>
+          {finalDate ? (
+            <p className="text-red-500">
+              Fecha de finalización de la suscripción: {finalDate}
+            </p>
+          ) : (
+            <p className="text-gray-500">Fecha de finalización no disponible</p>
+          )}
+          <p>Plan escogido: {planType}</p>
         </div>
         <Button onClick={() => navigate("/")}>Volver</Button>
       </Card>

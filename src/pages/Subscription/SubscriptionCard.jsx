@@ -1,21 +1,19 @@
 import { Button } from "@/components/ui/button";
-import { createPayment } from "@/Redux/Payment/Action";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SubscriptionCard = ({ data, currentPlan }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleUpgrade = () => {
-    if (data.planType !== currentPlan) {
-      dispatch(
-        createPayment({
-          planType: data.planType,
-          jwt: localStorage.getItem("jwt"),
-        })
-      );
-    }
+    // Redirigir al componente de éxito con el tipo de plan en la URL
+    navigate(`/upgrade_plan/success?planType=${data.planType}`);
   };
+
   const isCurrentPlan = data.planType === currentPlan;
+
   return (
     <div className="rounded-xl bg-[#1c1917] bg-opacity-20 shadow-[#14532d] shadow-2xl card p-5 space-y-5 w-[18rem]">
       <p>{data.planName}</p>
@@ -36,8 +34,11 @@ const SubscriptionCard = ({ data, currentPlan }) => {
         ))}
       </div>
 
-      <Button onClick={handleUpgrade} className="w-full"
-      disabled={isCurrentPlan}>
+      <Button
+        onClick={handleUpgrade}
+        className="w-full"
+        disabled={isCurrentPlan} // Deshabilitar el botón si es el plan actual
+      >
         {isCurrentPlan ? "Plan Actual" : "Contratar"}
       </Button>
     </div>
