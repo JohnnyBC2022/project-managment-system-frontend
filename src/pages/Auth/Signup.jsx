@@ -74,7 +74,7 @@ const Signup = () => {
                 <FormControl>
                   <Input
                     {...field}
-                    type="text"
+                    type="password"
                     className="w-full px-5 py-5 border border-gray-700"
                     placeholder="Contraseña..."
                   />
