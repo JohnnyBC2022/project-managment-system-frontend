@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 
 const Subscription = () => {
   const { subscription } = useSelector((store) => store);
+
+  const currentPlan = subscription.userSubscription?.planType || "GRATUITO";
   return (
     <div className="p-10">
       <h1 className="py-5 pb-16 text-5xl font-semibold text-center">
@@ -21,6 +23,7 @@ const Subscription = () => {
                 ? "Plan Actual"
                 : "Contratar",
           }}
+          currentPlan={currentPlan}
         />
         <SubscriptionCard
           data={{
@@ -33,6 +36,7 @@ const Subscription = () => {
                 ? "Plan Actual"
                 : "Contratar",
           }}
+          currentPlan={currentPlan}
         />
         <SubscriptionCard
           data={{
@@ -45,6 +49,7 @@ const Subscription = () => {
                 ? "Plan Actual"
                 : "Contratar",
           }}
+          currentPlan={currentPlan}
         />
       </div>
     </div>
