@@ -11,16 +11,14 @@ import { DotsVerticalIcon, PersonIcon } from "@radix-ui/react-icons";
 import UserList from "./UserList";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteIssue, openEditIssueModal } from "@/Redux/Issue/Action";
+import { deleteIssue, updateIssueStatus } from "@/Redux/Issue/Action";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import CreateIssueForm from "./CreateIssueForm";
 
 const IssueCard = ({item, projectId}) => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
   const [isOpen, setIsOpen]=useState(false)
 
   const handleIssueDelete=()=>{
@@ -30,6 +28,16 @@ const IssueCard = ({item, projectId}) => {
   const handleIssueUpdate=()=>{
     setIsOpen(true)
   }
+
+  const handleStatusChange = (newStatus) => {
+    dispatch(updateIssueStatus({ id: item.id, status: newStatus }));
+  };
+
+  const statusOptions = {
+    pendiente: ["en_progreso", "hecho"],
+    en_progreso: ["pendiente", "hecho"],
+    hecho: ["pendiente", "en_progreso"],
+  };
 
   return (
     <Card className="py-1 pb-2 rounded-md">
@@ -50,8 +58,18 @@ const IssueCard = ({item, projectId}) => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
-              <DropdownMenuItem>En Progreso</DropdownMenuItem>
-              <DropdownMenuItem>Terminado</DropdownMenuItem>
+            {statusOptions[item.status].map((status) => (
+                <DropdownMenuItem
+                  key={status.id}
+                  onClick={() => handleStatusChange(status)}
+                >
+                  {status === "pendiente" && "Pendiente"}
+                  {status === "en_progreso" && "En Progreso"}
+                  {status === "hecho" && "Terminado"}
+                </DropdownMenuItem>
+              ))}
+
+              
               <DropdownMenuItem onClick={handleIssueUpdate}>Editar</DropdownMenuItem>
               <DropdownMenuItem onClick={handleIssueDelete}>Eliminar</DropdownMenuItem>
             </DropdownMenuContent>

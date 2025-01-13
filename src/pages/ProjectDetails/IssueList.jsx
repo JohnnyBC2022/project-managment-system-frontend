@@ -41,12 +41,12 @@ const IssueList = ({ title, status }) => {
           </CardHeader>
           <CardContent className="px-2">
             <div className="space-y-2">
-              {issue.issues.filter((issue=>issue.status==status)).map((item)=> <IssueCard item={item} key={item} projectId={id}/>)}
+              {issue.issues.filter((issue=>issue.status==status)).map((item)=> <IssueCard item={item} key={item.id} projectId={id}/>)}
             </div>
           </CardContent>
           <CardFooter>
             <DialogTrigger>
-              <Button className="w-full flex items-center gap-2">
+              <Button className="flex items-center w-full gap-2">
                 Crear Tarea
                 <PlusIcon />
               </Button>

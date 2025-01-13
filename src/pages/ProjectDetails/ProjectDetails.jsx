@@ -31,13 +31,13 @@ const ProjectDetails = () => {
   return (
     <>
       <div className="mt-5 lg:px-10">
-        <div className="lg:flex gap-5 justify-between pb-4">
+        <div className="justify-between gap-5 pb-4 lg:flex">
           <ScrollArea className="h-screen lg:w-[69%] pr-2">
-            <div className="text-gray-400 pb-10 w-full">
-              <h1 className="text-lg font-semibold pb-5">
+            <div className="w-full pb-10 text-gray-400">
+              <h1 className="pb-5 text-lg font-semibold">
                 {project.projectDetails?.name}
               </h1>
-              <div className="space-y-5 pb-10 text-sm">
+              <div className="pb-10 space-y-5 text-sm">
                 <p className="w-full md:max-w-lg lg:max-w-xl ">
                   {project.projectDetails?.description}
                 </p>
@@ -91,8 +91,8 @@ const ProjectDetails = () => {
               </div>
 
               <section>
-                <p className="py-5 border-b text-lg -tracking-wider">Tareas</p>
-                <div className="lg:flex md:flex gap-3 justify-between py-5">
+                <p className="py-5 text-lg border-b -tracking-wider">Tareas</p>
+                <div className="justify-between gap-3 py-5 lg:flex md:flex">
                   <IssueList status="pendiente" title="Pendiente" />
                   <IssueList status="en_progreso" title="En Progreso" />
                   <IssueList status="hecho" title="Terminado" />

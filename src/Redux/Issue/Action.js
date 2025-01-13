@@ -49,7 +49,7 @@ export const updateIssueStatus = ({ id, status }) => {
       console.log("actualizando estado de la tarea", response.data);
       dispatch({
         type: actionTypes.UPDATE_ISSUE_STATUS_SUCCESS,
-        issues: response.data,
+        payload: response.data,
       });
     } catch (error) {
       console.log("error --", error);

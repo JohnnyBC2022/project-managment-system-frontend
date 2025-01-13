@@ -40,13 +40,14 @@ export const issueReducer = (state = initialState, action) => {
         issueDetails: action.issue,
       };
     case actionTypes.UPDATE_ISSUE_STATUS_SUCCESS:
+      const updatedIssues = state.issues.map((issue) =>
+        issue.id === action.payload.id
+          ? { ...issue, status: action.payload.status }
+          : issue
+      );
       return {
         ...state,
-        loading: false,
-        issueDetails: {
-          ...state.issueDetails,
-          status: action.issues.status,
-        },
+        issues: updatedIssues,
       };
     case actionTypes.ASSIGNED_ISSUE_TO_USER_SUCCESS:
       return {
