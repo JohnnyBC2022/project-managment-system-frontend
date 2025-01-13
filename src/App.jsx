@@ -11,6 +11,7 @@ import { getUser } from "./Redux/Auth/Action";
 import { fetchProjects } from "./Redux/Project/Action";
 import UpgradeSuccess from "./pages/Subscription/UpgradeSuccess";
 import AcceptInvitation from "./pages/Project/AcceptInvitation";
+import Welcome from "./pages/Welcome/Welcome";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +42,10 @@ function App() {
           </Routes>
         </div>
       ) : (
-        <Auth />
+        <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/auth" element={<Auth />} />
+          </Routes>
       )}
     </>
   );

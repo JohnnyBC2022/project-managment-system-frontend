@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { getUserSubscription, upgradeSubscription } from "@/Redux/Subscription/Action";
+import {
+  getUserSubscription,
+  upgradeSubscription,
+} from "@/Redux/Subscription/Action";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,36 +13,31 @@ const UpgradeSuccess = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { subscription } = useSelector((store) => store);
-  const [finalDate, setFinalDate] = useState(null); // Para la fecha de finalización
+  const [finalDate, setFinalDate] = useState(null);
 
   const queryParams = new URLSearchParams(location.search);
   const planType = queryParams.get("planType");
 
   useEffect(() => {
-    // Activar el plan seleccionado
     if (planType) {
       dispatch(upgradeSubscription({ planType }));
     }
 
-    // Obtener datos actualizados de la suscripción
     dispatch(getUserSubscription());
 
-    // Establecer las fechas
     if (planType) {
       const currentDate = new Date();
-      const formattedStartDate = currentDate.toLocaleDateString(); // Fecha sin hora
-      let newEndDate;
+      const formattedStartDate = currentDate.toLocaleDateString();
 
-      // Establecer la fecha de finalización según el tipo de plan
       if (planType === "MENSUAL") {
-        currentDate.setMonth(currentDate.getMonth() + 1); // Sumar un mes
+        currentDate.setMonth(currentDate.getMonth() + 1);
         newEndDate = currentDate.toLocaleDateString();
       } else if (planType === "ANUAL") {
-        currentDate.setFullYear(currentDate.getFullYear() + 1); // Sumar un año
+        currentDate.setFullYear(currentDate.getFullYear() + 1);
         newEndDate = currentDate.toLocaleDateString();
       }
 
-      setFinalDate(newEndDate); // Actualizamos la fecha de finalización
+      setFinalDate(newEndDate);
     }
   }, [dispatch, planType]);
 
